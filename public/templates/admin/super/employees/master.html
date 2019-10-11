@@ -1,0 +1,40 @@
+<div class="row" ng-init="initData()">
+    <div class="col-xs-12 col-sm-12 col-md-3">
+        <div show-search-criteria></div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-9">
+        <div
+                class="row"
+                ng-repeat="el in elements"
+        >
+
+            <div class="col-xs-12 col-sm-12 col-md-3">
+                <h4>
+                    <a href="#/edit/[[ el.id ]]">
+                        [[ el.name ]] [[ el.surname ]]
+                    </a>
+                </h4>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-3">
+                [[ el.permission ]]
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-3">
+                [[ el.email ]]
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-1">
+                <div status-btn-in-list="[[ el.status ]]" artid="[[ el.id ]]"></div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-2">
+                <div delete-element id="[[ el.id ]]"></div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<div show-pagination></div>

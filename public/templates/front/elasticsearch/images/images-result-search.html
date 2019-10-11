@@ -1,0 +1,73 @@
+<figure class="{{ fclass }} {{ img.orientation }}" itemprop="associatedMedia" ng-model="images_cloud" ng-init="images_cloud=$index" itemscope itemtype="http://schema.org/ImageObject" ng-repeat="img in images">
+    <div class="image-content" ng-switch on="img.type">
+        <div ng-switch-default>
+            <a href="{{img.image_link}}" itemprop="contentUrl" data-size="{{img.image_size}}" class="open-gallery-image">
+                <!--<div class="curtain onegall"></div>-->
+                <img ng-src="{{img.image_link}}" itemprop="thumbnail" alt="{{img.description}}" class="open-gallery-image" />
+                </a>
+            <!--<div class="tlo-gif"><img src="/images/loading.svg"></div>-->
+            </div>
+        <h3 class="see-more" ng-click="openCloudFragments(images_cloud)" ng-if="img.records.length>0">
+            Zobacz fragmenty skojarzone z tematyką obrazka
+        </h3>
+        </div>
+
+    <figcaption itemprop="caption description">{{img.description}}</figcaption>
+
+    <div class="records-linked" ng-if="img.records.length>0">
+
+
+        <div
+                class="cloud-more-fragments hidden"
+                id="cloud-{{ images_cloud }}"
+                ng-model="open_cloud_stats[images_cloud]"
+                ng-init="open_cloud_stats[images_cloud]=='hide'"
+        >
+            <a href="#" ng-click="$event.preventDefault();openCloudFragments(images_cloud)" class="close-x">x</a>
+
+            <div class="rec-linked" ng-repeat="r in img.records">
+
+                <div class="row-title-rec-l">
+                    <img src="/images/{{r.record_type}}-icon.svg" class="image-type">
+                    <h4 class="more-see-title">
+                        {{ r.record_title }}
+                    </h4>
+                </div>
+
+                <div class="fragments-rec">
+                    <div ng-repeat="f in r.fragments" class="row-frg">
+
+                        <div class="more-col">
+
+                            <div class="more-link-row">
+                                <a href="/{{$parent.r.record_type}}/{{ $parent.r.rid }}-{{ $parent.r.record_alias }}/{{ f.start }}" class="arrow-col" ng-if="$parent.$parent.auth">
+                                    <img src="/images/fragment_arrow.jpg" class="img-responsive">
+                                </a>
+                                <a href="/{{$parent.r.record_type}}/{{ $parent.r.rid }}-{{ $parent.r.record_alias }}/{{ f.start }}" class="time-col" ng-if="$parent.$parent.auth">
+                                    {{ f.start | timeToMinute}}
+                                </a>
+                                <a href="/demo/{{$parent.r.record_type}}/{{ $parent.r.rid }}-{{ $parent.r.record_alias }}/{{ f.start }}" class="arrow-col" ng-if="!$parent.$parent.auth">
+                                    <img src="/images/fragment_arrow.jpg" class="img-responsive">
+                                </a>
+                                <a href="/demo/{{$parent.r.record_type}}/{{ $parent.r.rid }}-{{ $parent.r.record_alias }}/{{ f.start }}" class="time-col" ng-if="!$parent.$parent.auth">
+                                    {{ f.start | timeToMinute}}
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <div class="frag-col">
+                            <span ng-bind-html="f.content | contentTrim:6"></span>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</figure>

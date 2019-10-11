@@ -1,0 +1,14 @@
+<div style="font-size:1.8em; text-align:center; line-height:150%" 
+   ng-bind-html="toTrustedHTML(forConfirmData.query)"
+   class="html"></div>
+	<br /><br />	
+   <div style="text-align:center">	
+	   <button type="submit"  ng-click="delegate(forConfirmData.fn,forConfirmData.item);closeThisDialog()" class="btn-sm btn-primary request">
+            <span class="glyphicon glyphicon-ok"></span> potwierdź
+      </button>	   
+    
+       <button type="button"  ng-click="closeThisDialog()" class="btn-sm btn-default">
+            <span class="glyphicon glyphicon-ban-circle"></span> rezygnuj
+       </button>
+	</div>   
+</div>

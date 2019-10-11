@@ -1,0 +1,186 @@
+<div class="overshadow-time" ng-if="show_signify">
+
+
+    <div class="link-time-content">
+        <div class="fragment-content-edit">
+
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-7">
+                    <div class="f-text-content">
+                       <div ng-bind-html="fragment.content"></div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-5">
+                    <div class="intervals-added-show">
+                        <div class="inside-padding">
+                            <h3 ng-repeat="intv in fragment.intervals" class="h3-time-tags">
+                                nazwa: [[ intv.name ]] <br> początek: [[ intv.begin ]]  <br>
+                                koniec:[[ intv.end ]] <br>
+                                <a href="#" ng-click="$event.preventDefault();removeTagAdded($index, intv.id, fragment.id)">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </a>
+                            </h3>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+
+                    <hr>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            Wyszukaj po:&nbsp;&nbsp;&nbsp;
+                            <label><input type="checkbox" ng-model="filter.name"> nazwa</label>
+                            <label><input type="checkbox" ng-model="filter.begin"> od</label>
+                            <label><input type="checkbox" ng-model="filter.end"> do</label>
+                            <hr>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12">
+                                <div
+                                        class="alert alert-danger"
+                                        role="alert"
+                                        ng-class="$parent.alertaddinterval"
+                                        ng-init="$parent.alertaddinterval='hidden'"
+                                >
+                                    <i class="fa fa-info-circle" aria-hidden="true"></i> Aby dodać interwał trzeba dodać datę "od" w min w postaci roku jak również datę "do" w postaci roku,
+                                </div>
+                                <div
+                                        class="alert alert-danger"
+                                        role="alert"
+                                        ng-class="$parent.intervalwaslink"
+                                        ng-init="$parent.intervalwaslink='hidden'"
+                                >
+                                    <i class="fa fa-info-circle" aria-hidden="true"></i> Fragment jest już oznaczony tym interwałem czasowym
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-3">
+                            <br>
+                            <label>Nazwa</label>
+                            <input
+                                    type="text"
+                                    class="form-control"
+                                    ng-model="search.name"
+                                    placeholder="Nazwa"
+                                    ng-disabled="!filter.name"
+                            >
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4">
+                            <label>Od:</label>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-4">
+                                    <label>Dzień</label>
+                                    <select name="repeatSelect" ng-model="search.begin.day" class="form-control" ng-disabled="!filter.begin">
+                                        <option ng-repeat="option in begin_vars.days" value="[[ option ]]">[[ option ]] </option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4">
+                                    <label>Miesiąc</label>
+                                    <select name="repeatSelect" ng-model="search.begin.month" class="form-control" ng-disabled="!filter.begin" ng-change="changeDaysListBegin(search.begin.year)">
+                                        <option ng-repeat="option in begin_vars.months" value="[[ option.value ]]">[[ option.name ]] </option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4">
+                                    <label>Rok</label>
+                                    <select name="repeatSelect" ng-model="search.begin.year" class="form-control" ng-disabled="!filter.begin" ng-change="changeDaysListBegin(search.begin.year)">
+                                        <option ng-repeat="option in begin_vars.years" value="[[ option ]]">[[option]]</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4">
+                            <label>Do:</label>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-4">
+                                    <label>Dzień</label>
+                                    <select name="repeatSelect" ng-model="search.end.day" class="form-control" ng-disabled="!filter.end">
+                                        <option ng-repeat="option in end_vars.days" value="[[ option ]]">[[ option ]] </option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4">
+                                    <label>Miesiąc</label>
+                                    <select name="repeatSelect" ng-model="search.end.month" class="form-control" ng-disabled="!filter.end" ng-change="changeDaysListEnd(search.begin.year)">
+                                        <option ng-repeat="option in end_vars.months" value="[[ option.value ]]">[[ option.name ]] </option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4">
+                                    <label>Rok</label>
+                                    <select name="repeatSelect" ng-model="search.end.year" class="form-control" ng-disabled="!filter.end" ng-change="changeDaysListEnd(search.begin.year)">
+                                        <option ng-repeat="option in end_vars.years" value="[[ option ]]">[[option]]</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-1">
+                            <label>&nbsp;</label>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <label>&nbsp;</label>
+                                    <a
+                                            href="#"
+                                            ng-click="$event.preventDefault();clearIntervalFields()"
+                                            class="btn btn-info">
+                                        Wyczyść
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <hr>
+                    <div class="row">
+
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+                            <button type="button" class="btn btn-info btn-full-length" ng-click="checkInterval()">
+                                Szukaj znacznika
+                            </button>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+                            <button type="button" class="btn btn-warning btn-full-length" ng-click="addInterval()">
+                                Dodaj znacznik czasowy
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="row">
+
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-suggest-intervals">
+                            <h4 ng-repeat="intv in suggestintevals">
+                                <a href="#" ng-click="$event.preventDefault();addIntervalToFragment($index, intv.id)">
+                                    <span class="label label-primary label-break">
+                                        nazwa: [[ intv.name ]] początek: [[ intv.begin ]]  koniec:[[ intv.end ]] <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </span>
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

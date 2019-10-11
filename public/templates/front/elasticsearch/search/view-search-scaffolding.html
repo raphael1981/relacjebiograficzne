@@ -1,0 +1,61 @@
+<div class="elasticsearch-front-cnt" ng-init="initData()">
+    <div class="container-fluid ahm-container">
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <div class="padding-right-in">
+                    <h2 class="head-search">
+                        <a href="#/t/">
+                            WYSZUKAJ PRZEZ FRAZĘ
+                        </a>
+                    </h2>
+                    <div class="col-search-inside" ng-class="(viewtype_hide=='phrase_search')?'over-hidden':''">
+                        <div class="over-col-search" ng-if="viewtype_hide=='phrase_search'"></div>
+                        <form
+                                class="form-inline form-search-inline"
+                                ng-submit="onSubmitFulltext()"
+                        >
+                            <div class="form-group group-search">
+
+                                <div class="input-group">
+                                    <input
+                                            type="text"
+                                            class="form-control"
+                                            id="ahmsearch"
+                                            placeholder="wpisz szukaną frazę"
+                                            ng-model="data.phrase"
+                                    >
+
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-search"></button>
+
+                        </form>
+                        <div class="select-type">
+                            <a href="#/t/" class="btn-point-search" ng-class="fragment_type">
+                                <span class="circle"></span> wyszukaj we fragmentach transkrypcji
+                            </a>
+                            <a href="#/img/" class="btn-point-search" ng-class="image_type">
+                                <span class="circle"></span> wyszukaj w zbiorze zdjeć
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <div class="padding-left-in">
+                    <h2 class="head-search">
+                        <a href="#/i/">
+                            WYSZUKAJ PRZEZ INDEKS <span class="lower-title">(tylko w transkrypcjach)</span>
+                        </a>
+                    </h2>
+                    <div class="col-search-inside" ng-class="(viewtype_hide=='index_search')?'over-hidden':''">
+                        <div class="over-col-search" ng-if="viewtype_hide=='index_search'"></div>
+                        <index-form-show></index-form-show>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

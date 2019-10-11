@@ -1,0 +1,34 @@
+<div class="cloud-config-index">
+    <ul class="ul-alphabet">
+        <li ng-repeat="lt in alphabet">
+            <a href="#" ng-click="$event.preventDefault();getTagsByLetter(lt)">
+                [[ lt ]]
+            </a>
+        </li>
+    </ul>
+
+    <div class="row">
+
+        <div class="col-sm-6">
+
+            <a href="#" ng-click="$event.preventDefault();setTagToSearch(tg)" class="tag-button" ng-repeat="tg in tags.first">
+                [[ tg.name ]]
+            </a>
+
+        </div>
+
+        <div class="col-sm-6">
+
+            <a href="#" ng-click="$event.preventDefault();setTagToSearch(tg)" class="tag-button" ng-repeat="tg in tags.second">
+                [[ tg.name ]]
+            </a>
+
+        </div>
+
+    </div>
+
+    <!--<button class="search-index-bottom" ng-click="searchDelegate()">-->
+        <!--Wyszukaj-->
+    <!--</button>-->
+
+</div>

@@ -1,0 +1,219 @@
+<div class="row" ng-init="initData()">
+
+    <div class="col-xs-12 col-sm-12 col-form-new-interviewee">
+
+        <div class="raport loading-saving" ng-class="intersaving" ng-init="intersaving='hidden'">
+            <img src="/images/loading.svg" class="img-responsive">
+        </div>
+
+        <div class="raport loading-saved" ng-class="intersaved" ng-init="intersaved='hidden'" ng-click="intersaved='hidden'">
+            <h2 ng-click="rsaved='hidden'">Dane świadka zostały zaktulizowane</h2>
+        </div>
+
+
+
+        <form class="form-horizontal" ng-submit="createNewInterviewee()">
+            <fieldset>
+
+
+                <legend>Nowy Świadek </legend>
+
+
+
+                <div class="form-group" ng-class="classes.name">
+                    <label class="col-md-2 control-label" for="name">Imię</label>
+                    <div class="col-md-10">
+                        <input
+                                id="name"
+                                name="name"
+                                type="text"
+                                placeholder="Imię"
+                                class="form-control input-md"
+                                ng-model="inter.name"
+                                ng-change="checkName()"
+                        >
+                    </div>
+                </div>
+
+
+                <div class="form-group" ng-class="classes.surname">
+                    <label class="col-md-2 control-label" for="surname">Nazwisko</label>
+                    <div class="col-md-10">
+                        <input
+                                id="surname"
+                                name="surname"
+                                type="text"
+                                placeholder="Nazwisko"
+                                class="form-control input-md"
+                                ng-model="inter.surname"
+                                ng-change="checkSurname()"
+                        >
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Portret świadka</label>
+                    <div class="col-md-12 col-lg-2">
+
+                        <div
+                                ngf-drop
+                                ngf-select
+                                ng-model="file"
+                                ngf-multiple="false"
+                                ngf-allow-dir="true"
+                                ngf-accept="'image/*'"
+                                name="file"
+                                ngf-pattern="'image/*'"
+                                class="drop-box">
+
+                        </div>
+
+
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: [[ progress ]]%;">
+                                [[ progress ]]%
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="col-md-12 col-lg-8" id="canvasColId">
+
+                        <!--<input type="file" img-cropper-fileread image="file | ngfDataUrl" />-->
+
+                        <button
+                                type="button"
+                                class="btn btn-warning btn-lg btn-full-length"
+                                ng-if="has_image && !upload_status"
+                                ng-click="restoreBaseImage()"
+                        >
+                            Przywróć bazowy obrazek <i class="fa fa-share" aria-hidden="true"></i>
+                        </button>
+
+
+                        <div ng-if="!upload_status" class="upload-screen">
+                            <div>
+                                <canvas
+                                        width="770"
+                                        height="500"
+                                        id="canvas"
+                                        style="margin: auto;display: block; background:#C0C0C0"
+                                        image-cropper
+                                        image="file | ngfDataUrl"
+                                        cropped-image="cropper.croppedImage"
+                                        crop-width="1200"
+                                        crop-height="657"
+                                        keep-aspect="true"
+                                        touch-radius="30"
+                                        crop-area-bounds="bounds"></canvas>
+                            </div>
+                            <!--<div>Cropped Image (Left: [[ bounds.left ]] Right: [[ bounds.right ]] Top: [[ bounds.top ]] Bottom: [[ bounds.bottom ]])</div>-->
+                            <div ng-show="cropper.croppedImage!=null" class="crop-view">
+                                <img ng-src="[[ cropper.croppedImage ]]" class="img-responsive" />
+                            </div>
+
+                            <button
+                                    class="btn btn-success btn-lg  btn-full-length"
+                                    type="button"
+                                    ng-click="uploadFiles(cropper.croppedImage)"
+                                    ng-if="file"
+                            >
+                                <i class="fa fa-cloud-upload" aria-hidden="true"></i> Wgraj skadrowany obrazek
+                            </button>
+
+                        </div>
+
+
+                        <div ng-if="upload_status" class="upload-screen added-image">
+
+                            <img src="/image/[[ inter.portrait.fname ]]/[[ inter.disk ]]" class="img-responsive">
+
+                            <button
+                                    type="button"
+                                    class="btn btn-danger btn-remove-upload-file"
+                                    ng-click="removeUplodedFile(inter.portrait)"
+                            >
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </button>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Nagrania</label>
+                    <div class="col-md-10">
+
+                        <ui-select
+                                multiple
+                                ng-model="inter.records"
+                                theme="bootstrap"
+                                ng-disabled="false"
+                                sortable="true"
+                                close-on-select="true"
+                                style="width: 100%;"
+                                title="Single property binding with async data"
+                                ng-change="showSelectedClients()"
+                        >
+                            <ui-select-match
+                                    placeholder="">
+                                <span class="big-label">[[$item.title ]] / [[$item.source]] / [[$item.signature]]</span>
+                            </ui-select-match>
+
+                            <ui-select-choices
+                                    repeat="record.id as record in records | propsFilter: {title: $select.search, source: $select.search, signature: $select.search}"
+                            >
+
+                                <h4 class="select-suggest-h4">[[record.title]] / [[record.source]] / [[record.signature]]</h4>
+
+                            </ui-select-choices>
+                        </ui-select>
+
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Biografia</label>
+                    <div class="col-md-10">
+
+
+                        <wysiwyg
+                                textarea-id="introtextID"
+                                textarea-class="form-control"
+                                textarea-height="600px"
+                                textarea-name="textareaIntro"
+                                textarea-required
+                                ng-model="inter.biography"
+                                enable-bootstrap-title="true"
+                                textarea-menu="model.menu"
+                                textarea-custom-menu="model.customMenu"
+                                textarea-custom-functions="model.customFunctions"></wysiwyg>
+
+                    </div>
+                </div>
+
+
+                <!-- Button -->
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <button name="singlebutton" class="btn btn-primary btn-full-length btn-lg btn-save-interviewee">Aktualizuj informacje o świadku</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+
+
+    </div>
+
+</div>

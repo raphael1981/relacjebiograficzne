@@ -1,0 +1,260 @@
+<div class="row row-label-blue-gray" ng-init="initData()">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="overload-fragments" ng-class="wasloaded">
+            <h2>Czekaj zbieramy informacje o nagraniu <img src="/images/loading.svg"></h2>
+        </div>
+        <div class="row">
+            <div
+                    class="col-xs-12 col-sm-12 col-md-12"
+                    ng-if="record.rdata!=null"
+            >
+                <div class="page-header">
+                    <h2>
+                        [[ record.rdata.title ]]
+                    </h2>
+                </div>
+
+            </div>
+            <div
+                    class="col-xs-12 col-sm-12 col-md-12"
+                    ng-if="record.rdata!=null"
+            >
+
+                <!--
+                <div class="page-header">
+                    <h2>
+                        <i class="fa fa-tags" aria-hidden="true"></i> Tagowanie rekordu
+                    </h2>
+                </div>
+                -->
+
+                <!--on-tag-added="changeTagsRecordCollection()"-->
+                <!--on-tag-removed="changeTagsRecordCollection()"-->
+                <!-- <tags-input
+                        ng-model="record.tags"
+                        display-property="name"
+                        replaceSpacesWithDashes="false"
+                        placeholder="Dodaj Tag"
+
+                >
+                    <auto-complete source="loadTags($query)"></auto-complete>
+                </tags-input>
+
+              -->
+                <div class="page-header">
+                    <h2>
+                        <i class="fa fa-tags" aria-hidden="true"></i> Zbiór tematów
+                    </h2>
+                </div>
+
+
+                <div class="tags-cloud-view">
+
+                    <h5 class="tag-label" ng-repeat="tag in tagscloud">
+                        <span class="label label-gray">
+                            [[ tag.name ]]
+                        </span>
+                    </h3>
+
+                </div>
+
+                <!--
+                <hr>
+
+                <div class="page-header">
+                    <h2>
+                        <i class="fa fa-map-marker" aria-hidden="true"></i> Zbiór miejsc
+                    </h2>
+                </div>
+
+                <div class="tags-cloud-view">
+
+                    <h3 class="tag-label" ng-repeat="place in placescloud">
+                        <span class="label label-info">
+                            [[ place.name ]]
+                        </span>
+                    </h3>
+
+                </div>
+
+
+                </hr> -->
+
+
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+
+        <div class="page-header" ng-if="fragmentsloaded">
+            <h2>
+                Fragmenty
+            </h2>
+        </div>
+
+        <div class="row search-row">
+            <div class="col-xs-12 col-sm-12">
+                <div fragment-filter></div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="fragments-list-frame">
+
+            <div class="row row-fragment" ng-repeat="f in record.fragments" ng-init="fullfragment[$index].record=r;f.index=$index">
+
+                <div class="col-div-neutral">
+
+                    <div class="col-xs-12 col-sm-12 col-md-3">
+                        <h4 class="text-center">Nr</h4>
+                        <h4 class="text-center">
+                            <span class="label label-primary">
+                                [[ $index+1 ]]
+                            </span>
+                        </h4>
+                        <hr>
+                        <h4 class="text-center">Czas</h4>
+                        <h4 class="text-center">
+                            <a
+                                    href="#"
+                                    editable-text="f.start"
+                                    e-placeholder="Czas rozpoczęcia"
+                                    onbeforesave="validateFragment($data)"
+                                    onaftersave="saveFragmentTime($data,f.id)"
+                            >
+                                [[ f.start ]]
+                            </a>
+                        </h4>
+                    </div>
+                    <!--<div class="col-xs-12 col-sm-12 col-md-1">-->
+                        <!--<h4>-->
+                            <!--<span class="label label-warning">[[ f.start | secondsToTime ]]</span>-->
+                        <!--</h4>-->
+                    <!--</div>-->
+                    <div class="col-xs-12 col-sm-12 col-md-4">
+                        [[ f.id ]]
+                        <div class="fragment-content-look">
+                            <div ng-bind-html="[[ f.content ]]"></div>
+                        </div>
+                        <button type="button" class="btn btn-warning btn-full-length" ng-click="editFragment($index,f.id)">
+                            <i class="fa fa-edit"></i> Edytuj treść fragmentu
+                        </button>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4">
+
+                        <h4><i class="fa fa-tags" aria-hidden="true"></i> Tematy</h4>
+
+                        [[ fullfragment.current[$index] ]]
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12">
+                                <tags-input
+                                        ng-model="fullfragment.current[$index]"
+                                        display-property="name"
+                                        replace-spaces-with-dashes="false"
+                                        add-from-autocomplete-only="true"
+                                        placeholder="Dodaj Tag"
+                                        on-tag-added="getAllTagsFragment(true, $index, f.id, null, $tag)"
+                                        on-tag-removed="getAllTagsFragment(true, $index, f.id, 'remove', $tag)"
+                                >
+                                    <auto-complete source="loadTags($query)"></auto-complete>
+                                </tags-input>
+                            </div>
+                        </div>
+
+                        <hr>
+
+
+                        <h4><i class="fa fa-map-marker" aria-hidden="true"></i> Miejsca</h4>
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12">
+                                <tags-input
+                                        ng-model="fullfragment.currentplace[$index]"
+                                        display-property="name"
+                                        replace-spaces-with-dashes="false"
+                                        placeholder="Oznacz znacznikem miejsca"
+                                        on-tag-added="getAllPlacesFragment(true, $index, f.id, null, $tag)"
+                                        on-tag-removed="getAllPlacesFragment(true, $index, f.id, 'remove', $tag)"
+                                >
+                                    <auto-complete source="loadPlaces($query)"></auto-complete>
+                                </tags-input>
+                            </div>
+                        </div>
+
+                        <hr>
+
+
+                        <h4><i class="fa fa-clock-o" aria-hidden="true"></i> Przedziały czasowe</h4>
+
+                        <a href="#" class="btn btn-primary" ng-click="$event.preventDefault();$parent.signify_fragment=f">
+                            <i class="fa fa-clock-o" aria-hidden="true"></i> Oznacz fragment interwałem czasowym
+                        </a>
+
+                        <div  ng-repeat="intv in f.intervals" class="interval-list-element">
+                            <h4>
+                            <span class="label label-warning">
+                                nazwa: [[ intv.name ]] początek: [[ intv.begin ]] koniec [[ intv.end ]]
+                                <a href="#" ng-click="$event.preventDefault();removeLinkInterval($parent.$index, f.id, intv.id)">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </a>
+                            </span>
+                            </h4>
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-1">
+                        <button type="button" class="btn btn-danger" ng-click="removeOneFragment($index,f.id)">
+                            <i class="fa fa-remove"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="col-xs-12 col-sm-12">
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<div class="dialog-window" ng-class="fragdialog" ng-model="rid" ng-model="index" ng-init="fragdialog='hidden';rid=null;index=null">
+    <h4>Czy chcesz usunąć fragment?</h4>
+    <button type="button" class="btn btn-default" ng-click="fragdialog='hidden'">
+        Anuluj
+    </button>
+    <button type="button" class="btn btn-danger" ng-click="removeFragmentAfterConfirm()">
+        Usuń
+    </button>
+</div>
+
+<div class="edit-fragment" ng-class="editfrag" ng-model="reditid" ng-model="editindex" ng-init="editfrag='hidden';reditid=null;editindex=null">
+    <button type="button" class="btn btn-danger pull-right" ng-click="editfrag='hidden';fragedittext='';reditid=null;editindex=null">
+        Zamknij <i class="fa fa-close"></i>
+    </button>
+    <wysiwyg
+            textarea-id="introtextID"
+            textarea-class="form-control"
+            textarea-height="100px"
+            textarea-name="textareaQuestion"
+            textarea-required
+            ng-model="fragedittext"
+            enable-bootstrap-title="true"
+            textarea-menu="menu"></wysiwyg>
+    <button type="button" class="btn btn-success btn-full-length" ng-click="updateFragmentContent()">
+        <i class="fa fa-save"></i> Zapisz zmiany
+    </button>
+</div>
+
+<button class="btn btn-danger btn-lg hide-fragment-link" ng-if="signify_fragment!=null" ng-click="updateSignifyFragment($parent.signify_fragment);$parent.signify_fragment=null">
+    <i class="fa fa-times" aria-hidden="true"></i>
+</button>
+<div fragment-link-time="" signify-fragment="[[ signify_fragment ]]"></div>

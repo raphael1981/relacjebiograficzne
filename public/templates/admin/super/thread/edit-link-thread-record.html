@@ -1,0 +1,75 @@
+<div class="row" ng-init="initData()">
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div
+                class="row"
+        >
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <h3 ng-if="data.thread!=null">
+                    Temat: <span class="label label-primary">[[ data.thread.name ]]</span>
+                </h3>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-5">
+
+                        <ui-select
+                                multiple
+                                ng-model="data.selected_rec"
+                                theme="bootstrap"
+                                ng-disabled="false"
+                                sortable="true"
+                                close-on-select="true"
+                                style="width: 100%;"
+                                title="Single property binding with async data"
+                                ng-change="findAndChange()"
+                        >
+                            <ui-select-match
+                                    placeholder="" style="display: none">
+                                <span class="big-label">[[$item.title ]]</span>
+                            </ui-select-match>
+
+                            <ui-select-choices
+                                    repeat="record.id as record in baserecords | propsFilter: {title: $select.search}"
+                            >
+
+                                <h4 class="select-suggest-h4">[[record.title]]</h4>
+
+                            </ui-select-choices>
+                        </ui-select>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-7">
+
+                        <div class="view-periods">
+                            <div ng-repeat="record in data.records | orderBy:'-'">
+                                <img src="/images/[[ record.type ]]-icon.svg" class="img-responsive image-icon" style="width: 60px;">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-8">
+                                        <h4>
+                                            [[ record.title ]]
+                                        </h4>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4">
+                                        <button
+                                                class="btn btn-primary"
+                                                ng-click="removeLinkRecordTry(data.tid, record.id)"
+                                        >
+                                            <i class="fa fa-thumb-tack" aria-hidden="true"></i> Odepnij nagranie
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <hr>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="row row-fragment" ng-repeat="f in fragments">
+
+
+    <div class="col-xs-12 col-sm-12 col-md-2 arrow-col">
+        <a href="/[[ record.type ]]/[[record.rid ]]-[[record.alias ]]/[[ f.start ]]"
+           ng-if="auth=='true'"
+        >
+            <img src="/images/fragment_arrow.jpg" class="img-responsive">
+        </a>
+        <a
+                href="/demo/[[ record.type ]]/[[record.rid ]]-[[ record.alias ]]/[[ f.start ]]"
+                ng-if="auth=='false'"
+        >
+            <img src="/images/fragment_arrow.jpg" class="img-responsive">
+        </a>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-2 time-col">
+        <a href="/[[ record.type ]]/[[record.rid ]]-[[record.alias ]]/[[ f.start ]]"
+           ng-if="auth=='true'"
+        >
+            [[ f.start | timeToMinute ]]
+        </a>
+
+        <a
+                href="/demo/[[ record.type ]]/[[record.rid ]]-[[record.alias ]]/[[ f.start ]]"
+                ng-if="auth=='false'"
+        >
+            [[ f.start | timeToMinute ]]
+        </a>
+    </div>
+
+
+
+</div>

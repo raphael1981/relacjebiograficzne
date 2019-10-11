@@ -1,0 +1,432 @@
+<button
+        class="btn btn-danger btn-lg btn-save-new-file"
+        ng-click="saveNewArticle()"
+>
+    <i class="fa fa-floppy-o" aria-hidden="true"></i> Zapisz
+</button>
+<div class="loading" ng-class="loading" ng-init="loading='hidden'">
+    <img src="/images/loading.svg" style="width: 100px">
+</div>
+<div
+        class="row"
+        ng-init="initData()"
+>
+
+
+
+    <div class="col-xs-12 col-sm-12">
+
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-12 text-center">
+
+                <div class="page-header">
+                    <h2>
+                        <i class="fa fa-pencil-square" aria-hidden="true"></i>
+                        Wybierz rodzaj artykułu:
+                    </h2>
+                </div>
+
+                <label class="radio-inline">
+                    <input type="radio" name="atyp" ng-model="arttype" value="site"> Wewnętrzny
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="atyp" ng-model="arttype" value="external"> Zewnętrzny
+                </label>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+    </div>
+
+    <div class="col-xs-12 col-sm-12">
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-editors">
+
+                <div class="page-header">
+                    <h3 class="text-center"><i class="fa fa-cloud-upload" aria-hidden="true"></i> Upuść obrazki</h3>
+                </div>
+
+                <div
+                        ngf-drop
+                        ng-model="files"
+                        ngf-drag-over-class="dragover"
+                        ngf-multiple="true"
+                        ngf-allow-dir="true"
+                        accept="image/*"
+                        class="drop-box">
+
+                </div>
+
+
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: [[ progress ]]%;">
+                        [[ progress ]]%
+                    </div>
+                </div>
+
+                <div class="jumbotron" ng-if="uploaded.length>0">
+
+                    <div class="row" ng-repeat="img in uploaded">
+                        <div class="col-xs-12 col-sm-12">
+                            <div
+                                    class="image-set-view"
+                                    ng-init="uploadmediaconfig[$index]={
+                                        maxWidth:img.rootsize[0],
+                                        float:'none',
+                                        hideform:true
+                                        }"
+                            >
+
+                                <img src="[[ img.image ]]" class="img-responsive">
+
+                                <button class="btn btn-info btn-full-length" ng-click="$parent.$parent.newartdata.intro_image=img;$event.preventDefault();">
+                                    Ilustracja wprowadzenia
+                                </button>
+
+                                <button class="btn btn-success btn-full-length" ng-click="clickImageInLibraryUpload($index,img);$event.preventDefault();">
+                                    Użyj w treści artykułu
+                                </button>
+
+                                <button
+                                        class="btn btn-warning btn-full-length"
+                                        ng-click="
+                                            $event.preventDefault();
+                                            (uploadmediaconfig[$index].hideform==false)?(uploadmediaconfig[$index].hideform=true):(uploadmediaconfig[$index].hideform=false)
+                                        ">
+                                    Konfiguruj obrazek dla artykułu
+                                </button>
+
+
+                                <form name="cssconfigupload" class="text-center" ng-hide="uploadmediaconfig[$index].hideform">
+                                    <label>
+                                        Maxymalna szerokość (px)
+                                    </label>
+
+                                    <div
+                                            class="input-group"
+                                            ng-model="uploadmediaconfig[$index].validmaxwidth"
+                                            ng-init="uploadmediaconfig[$index].validmaxwidth=uploadmediaconfig[$index].maxWidth"
+                                    >
+                                      <span class="input-group-btn">
+                                          <button type="button"
+                                                  class="btn btn-default btn-number"
+                                                  ng-mouseup="changeMaxWidthUploadMouseUp($index)"
+                                                  ng-mousedown="changeMaxWidthUploadMouseDown('minus',$index)"
+                                          >
+                                              <i class="fa fa-minus" aria-hidden="true"></i>
+                                          </button>
+                                      </span>
+
+                                        <input
+                                                type="text"
+                                                name="mwidth"
+                                                disabled placeholder="Maxymalna szerokość"
+                                                class="form-control input-number"
+                                                ng-model="uploadmediaconfig[$index].maxWidth"
+                                                ng-pattern="/^[0-9]+$/"
+                                        >
+
+
+                                      <span class="input-group-btn">
+                                          <button
+                                                  type="button"
+                                                  class="btn btn-default btn-number"
+                                                  ng-mouseup="changeMaxWidthUploadMouseUp($index)"
+                                                  ng-mousedown="changeMaxWidthUploadMouseDown('plus',$index)"
+                                          >
+                                              <i class="fa fa-plus" aria-hidden="true"></i>
+                                          </button>
+                                      </span>
+                                    </div>
+
+
+                                    <label>
+                                        <select class="form-control" ng-model="uploadmediaconfig[$index].float">
+                                            <option value="none">none</option>
+                                            <option value="image-left">Wyrównaj do lewej</option>
+                                            <option value="image-right">Wyrównaj do prawej</option>
+                                        </select>
+                                    </label>
+                                </form>
+
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-9">
+
+                <div class="page-header">
+                    <h2><i class="fa fa-pencil-square" aria-hidden="true"></i> Typ artykułu: <span class="label label-info" ng-if="arttype=='site'">Wewnętrzny</span> <span class="label label-info" ng-if="arttype=='external'">Zewnętrzny</span></h2>
+                </div>
+
+                <div class="page-header">
+                    <h3>Tytuł artykułu</h3>
+                </div>
+
+                <input
+                        type="text"
+                        name="mwidth"
+                        placeholder="Tytuł artykułu"
+                        class="form-control input-lg"
+                        ng-model="newartdata.title"
+                        ng-change="checkIsTitle()"
+                >
+                <div
+                        class="alert alert-danger"
+                        ng-if="!if_title_valid"
+                >
+                    Tytuł artykułu jest wymagany
+                </div>
+
+                <div class="page-header" ng-if="arttype=='external'">
+                    <h3>Zewnętrzny link</h3>
+                </div>
+
+                <div
+                        ng-if="arttype=='external'"
+                        class="alert alert-info"
+                >
+                    Format (np. <b>http://domena.pl</b> lub <b>https://domena.pl</b>)
+                </div>
+                <div class="form-group" ng-class="url_class_valid">
+                <input
+                        type="text"
+                        name="mexturl"
+                        placeholder="Link zewnętrzny"
+                        class="form-control input-lg"
+                        ng-model="newartdata.external_url"
+                        ng-change="checkExternalLink()"
+                        ng-if="arttype=='external'">
+                </div>
+
+                <div
+                        class="alert alert-danger"
+                        ng-if="!if_exurl_valid"
+                >
+                    Podaj link zewnętrzny lub jego prawidłową formę
+                </div>
+
+                <div class="page-header">
+                    <h3>Ilustracja wprowadzenia</h3>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-4"  ng-if="newartdata.intro_image!=null">
+                        <img src="[[ newartdata.intro_image.image ]]/700" class="img-responsive thumbnail">
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <button
+                                class="btn btn-primary"
+                                ng-click="openMediaForIntro()"
+                        ><i class="fa fa-file-image-o" aria-hidden="true"></i> Wybierz ilustrację wprowadzenia
+                        </button>
+
+                        <button
+                                ng-if="newartdata.intro_image!=null"
+                                class="btn btn-danger"
+                                ng-click="newartdata.intro_image=null"
+                        ><i class="fa fa-times" aria-hidden="true"></i> Usuń zdjęcie wprowadzenia
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="page-header">
+                    <h3>Wstęp do artykułu</h3>
+                </div>
+                <wysiwyg
+                        textarea-id="introtextID"
+                        textarea-class="form-control"
+                        textarea-height="100px"
+                        textarea-name="textareaQuestion"
+                        textarea-required
+                        ng-model="description.introtext"
+                        enable-bootstrap-title="true"
+                        textarea-menu="modelintro.menu"
+                        textarea-custom-menu="modelshort.customMenu"
+                        textarea-custom-functions="modelshort.customFunctions"></wysiwyg>
+
+
+                <div ng-if="arttype=='site'">
+                    <div class="page-header">
+                    <h3>Tekst pełnej odsłony artykułu</h3>
+                    </div>
+                    <wysiwyg
+                            textarea-id="fulltextID"
+                            textarea-class="form-control"
+                            textarea-height="800px"
+                            textarea-name="textareaQuestion"
+                            textarea-required
+                            media-photo="[[ imagetoadd ]]"
+                            ng-model="newartdata.fulltext"
+                            enable-bootstrap-title="true"
+                            textarea-menu="model.menu"
+                            textarea-custom-menu="model.customMenu"
+                            textarea-custom-functions="model.customFunctions"></wysiwyg>
+
+
+
+                </div>
+
+
+
+
+
+            </div>
+
+        </div>
+
+        <div class="modal-media hidden" ng-if="arttype=='site'" id="modal-media-lib">
+            <div class="scroll-media-view">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12">
+
+                        <div class="btn-group" role="group" aria-label="...">
+
+                            <button
+                                    type="button"
+                                    class="btn btn-default active"
+                                    ng-if="$parent.disk=='photos'"
+                            >
+                                Dysk Fotografie
+                            </button>
+                            <button
+                                    type="button"
+                                    class="btn btn-default"
+                                    ng-if="$parent.disk!='photos'"
+                                    ng-click="changeDisk('photos')"
+                            >
+                                Dysk Fotografie
+                            </button>
+
+                            <button
+                                    type="button"
+                                    class="btn btn-default active"
+                                    ng-if="$parent.disk=='portraits'"
+                            >
+                                Dysk Portrety
+                            </button>
+                            <button
+                                    type="button"
+                                    class="btn btn-default"
+                                    ng-if="$parent.disk!='portraits'"
+                                    ng-click="changeDisk('portraits')"
+                            >
+                                Dysk Portrety
+                            </button>
+
+
+                            <button
+                                    type="button"
+                                    class="btn btn-default active"
+                                    ng-if="$parent.disk=='pictures'"
+                            >
+                                Dysk pozostałe zdjęcia
+                            </button>
+                            <button
+                                    type="button"
+                                    class="btn btn-default"
+                                    ng-if="$parent.disk!='pictures'"
+                                    ng-click="changeDisk('pictures')"
+                            >
+                                Dysk pozostałe zdjęcia
+                            </button>
+
+                        </div>
+
+                        <div ng-if="loading_disk" class="alert alert-warning">
+                            Ładowanie zdjeć z dysku ... czekaj
+                        </div>
+
+                        <div media-library></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-media hidden" id="modal-media-lib-for-intro">
+            <div class="scroll-media-view">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12">
+
+                        <div class="btn-group" role="group" aria-label="...">
+
+                            <button
+                                    type="button"
+                                    class="btn btn-default active"
+                                    ng-if="disk=='photos'"
+                            >
+                                Dysk Fotografie
+                            </button>
+                            <button
+                                    type="button"
+                                    class="btn btn-default"
+                                    ng-if="disk!='photos'"
+                                    ng-click="changeDisk('photos')"
+                            >
+                                Dysk Fotografie
+                            </button>
+
+                            <button
+                                    type="button"
+                                    class="btn btn-default active"
+                                    ng-if="disk=='portraits'"
+                            >
+                                Dysk Portrety
+                            </button>
+                            <button
+                                    type="button"
+                                    class="btn btn-default"
+                                    ng-if="disk!='portraits'"
+                                    ng-click="changeDisk('portraits')"
+                            >
+                                Dysk Portrety
+                            </button>
+
+
+                            <button
+                                    type="button"
+                                    class="btn btn-default active"
+                                    ng-if="disk=='pictures'"
+                            >
+                                Dysk pozostałe zdjęcia
+                            </button>
+                            <button
+                                    type="button"
+                                    class="btn btn-default"
+                                    ng-if="disk!='pictures'"
+                                    ng-click="changeDisk('pictures')"
+                            >
+                                Dysk pozostałe zdjęcia
+                            </button>
+
+                        </div>
+
+                        <div ng-if="loading_disk" class="alert alert-warning">
+                            Ładowanie zdjeć z dysku ... czekaj
+                        </div>
+
+                        <div media-library-for-intro></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div
+        class="overflow-shadow-media hidden"
+        ng-click="hideMediaModal()"
+></div>

@@ -1,0 +1,224 @@
+<div
+        class="container-fluid ahm-container"
+>
+
+
+    <div class="row">
+
+        <div class="col-xs-12 col-sm-12">
+
+            <form
+                    class="form-inline form-search-inline"
+                    ng-submit="onSubmit()"
+                    ng-init="initOnLoad()"
+            >
+                <div class="form-group group-search">
+
+                    <div class="input-group">
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="ahmsearch"
+                                placeholder="[[ searchplaceholder ]]"
+                                ng-model="data.search.frase"
+                                ng-change="getSuggest()"
+                        >
+
+                    </div>
+                </div>
+                <button type="submit" class="btn-search"></button>
+
+
+                <img
+                        src="/images/checkbox-select.png"
+                        class="img-responsive select-image"
+                        ng-if="!is_perfect"
+                        ng-click="changeSearchMode('perfect')"
+                >
+                <img
+                        src="/images/checkbox-deselect.png"
+                        class="img-responsive select-image"
+                        ng-if="is_perfect"
+                        ng-click="changeSearchMode('regex')"
+                >
+
+                <b>
+                    <a class="link-change-search" href="#/zawansowane">wyszukiwanie zawansowane&nbsp;&nbsp;<a href="#/"><img src="/images/fragment_arrow.jpg"></a>
+                </b>
+
+            </form>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6">
+
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6">
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <div class="screen-search">
+
+        <div class="searching-now" ng-if="showsearching">
+            <img src="/images/loading.svg">
+        </div>
+
+        <div class="row row-search-results">
+            <div class="col-xs-12 col-sm-12">
+
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+
+                        <div class="row row-search-result" ng-repeat="r in data.results" ng-if="(($index % 2) == 0)">
+
+                            <div class="col-xs-12 col-sm-12 col-md-2 col-icon-search">
+                                <img src="/images/[[ r.record.type ]]-icon.svg" class="img-responsive">
+                            </div>
+
+                            <div class="col-xs-12 col-sm-12 col-md-10 col-fragments">
+
+
+                                <div ng-if="auth">
+
+                                    <h2 class="interviewee-name">
+
+                                        <a
+                                                href="/[[ r.record.type ]]/[[ r.record.rid ]]-[[ r.record.alias ]]/?fraza=[[ data.search.frase ]]&stype=[[ data.search.searchmode ]]"
+
+                                        >
+                                            [[ r.record.title ]]
+                                        </a>
+
+                                    </h2>
+                                    <div
+                                            search-fragments="[[ r.fragments ]]"
+                                            record="[[ r.record ]]"
+                                            frase="[[ data.search.frase ]]"
+                                            auth="[[ auth ]]"
+                                            type="[[ data.search.searchmode ]]"
+                                    >
+
+                                    </div>
+
+                                </div>
+
+
+                                <div ng-if="!auth">
+
+                                    <h2 class="interviewee-name">
+
+                                        <a
+                                                href="/demo/[[ r.record.type ]]/[[ r.record.rid ]]-[[ r.record.alias ]]/?fraza=[[ data.search.frase ]]&stype=[[ data.search.searchmode ]]"
+
+                                        >
+                                            [[ r.record.title ]]
+                                        </a>
+
+                                    </h2>
+                                    <div
+                                            search-fragments="[[ r.fragments ]]"
+                                            record="[[ r.record ]]"
+                                            frase="[[ data.search.frase ]]"
+                                            auth="[[ auth ]]"
+                                            type="[[ data.search.searchmode ]]"
+                                    >
+
+                                    </div>
+
+                                </div>
+
+
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-6">
+
+                <div class="row row-search-result" ng-repeat="r in data.results" ng-if="(($index % 2) == 1)">
+
+                    <div class="col-xs-12 col-sm-12 col-md-2 col-icon-search">
+                        <img src="/images/[[ r.record.type ]]-icon.svg" class="img-responsive">
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-10 col-fragments">
+
+
+                        <div ng-if="auth">
+
+                            <h2 class="interviewee-name">
+
+                                <a
+                                        href="/[[ r.record.type ]]/[[ r.record.rid ]]-[[ r.record.alias ]]/?fraza=[[ data.search.frase ]]&stype=[[ data.search.searchmode ]]"
+
+                                >
+                                    [[ r.record.title ]]
+                                </a>
+
+                            </h2>
+                            <div
+                                    search-fragments="[[ r.fragments ]]"
+                                    record="[[ r.record ]]"
+                                    frase="[[ data.search.frase ]]"
+                                    auth="[[ auth ]]"
+                                    type="[[ data.search.searchmode ]]"
+                            >
+
+                            </div>
+
+                        </div>
+
+
+                        <div ng-if="!auth">
+
+                            <h2 class="interviewee-name">
+
+                                <a
+                                        href="/demo/[[ r.record.type ]]/[[ r.record.rid ]]-[[ r.record.alias ]]/?fraza=[[ data.search.frase ]]&stype=[[ data.search.searchmode ]]"
+
+                                >
+                                    [[ r.record.title ]]
+                                </a>
+
+                            </h2>
+                            <div
+                                    search-fragments="[[ r.fragments ]]"
+                                    record="[[ r.record ]]"
+                                    frase="[[ data.search.frase ]]"
+                                    auth="[[ auth ]]"
+                                    type="[[ data.search.searchmode ]]"
+                            >
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <div class="more-section" ng-if="morebutton">
+            <a href="#" class="button-more-search" ng-click="addNext();$event.preventDefault()">
+                pokaż więcej
+            </a>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>

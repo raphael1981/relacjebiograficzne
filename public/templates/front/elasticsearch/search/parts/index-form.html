@@ -1,0 +1,194 @@
+<div class="row-index-vars" ng-init="initData()">
+    <div class="element-open time-view">
+        <div class="empty-select">
+            <span class="placeholder-text" ng-if="!not_empty_index.interval">
+                czas
+            </span>
+            <span class="show-query-info" ng-if="not_empty_index.interval">
+                [[ indexdata.date.begin.day ]].[[ indexdata.date.begin.month ]].[[ indexdata.date.begin.year ]] -
+                [[ indexdata.date.end.day ]].[[ indexdata.date.end.month ]].[[ indexdata.date.end.year ]]
+                <span class="close-x" ng-click="clearCloseDate()">x</span>
+            </span>
+            <img src="/images/close-index-arrow.jpg" ng-if="indexview.interval=='hidden'">
+            <img src="/images/open-index-arrow.jpg" ng-if="indexview.interval==''">
+            <a href="#" class="over-empty-select"
+               ng-click="$event.preventDefault();showDateView()"
+            ></a>
+        </div>
+    </div>
+    <div class="element-open tag-view">
+        <div class="empty-select">
+            <span class="placeholder-text" ng-if="!not_empty_index.place">
+                miejsce
+            </span>
+            <span class="show-query-info" ng-if="not_empty_index.place">
+                [[ indexdata.place.name ]]
+                <span class="close-x" ng-click="clearClosePlace()">x</span>
+            </span>
+            <img src="/images/close-index-arrow.jpg" ng-if="indexview.places=='hidden'">
+            <img src="/images/open-index-arrow.jpg" ng-if="indexview.places==''">
+            <a href="#" class="over-empty-select"
+               ng-click="$event.preventDefault();showPlaceView()"
+            ></a>
+        </div>
+    </div>
+    <div class="element-open tag-view">
+        <div class="empty-select">
+            <span class="placeholder-text" ng-if="!not_empty_index.tag">
+                słowo kluczowe
+            </span>
+            <span class="show-query-info" ng-if="not_empty_index.tag">
+                [[ indexdata.tag.name ]]
+                <span class="close-x" ng-click="clearCloseTag()">x</span>
+            </span>
+            <img src="/images/close-index-arrow.jpg" ng-if="indexview.tags=='hidden'">
+            <img src="/images/open-index-arrow.jpg" ng-if="indexview.tags==''">
+            <a href="#" class="over-empty-select"
+                ng-click="$event.preventDefault();showTagsView()"
+            ></a>
+        </div>
+    </div>
+
+
+    <div class="cloud-config-index" ng-class="indexview.interval">
+        <div class="date-row">
+            <h3 class="time-sub-title no-margin">Wyszukiwanie przez przedziały czasowe</h3>
+            <div class="date-prefix">
+                Od
+            </div>
+            <div class="date-selectors">
+
+                <div class="date-input">
+                    <input
+                            type="text"
+                            placeholder="rok"
+                            maxlength="4"
+                            ng-click="resetSwitch()"
+                            ng-model="indexdata.date.begin.year"
+                    >
+                </div>
+                <div class="date-input">
+                    <input
+                            type="text"
+                            placeholder="miesiąc"
+                            ng-model="indexdata.date.begin.month"
+                    >
+                    <span class="over-input" ng-click="showSelectCloud('begin.months')"></span>
+                </div>
+                <div class="date-input">
+                    <input
+                            type="text"
+                            placeholder="dzień"
+                            ng-model="indexdata.date.begin.day"
+                    >
+                    <span class="over-input" ng-click="showSelectCloud('begin.days')"></span>
+                </div>
+
+                <div class="cloud-select" ng-class="switch_select.begin.months">
+                    <div class="select-day-element" ng-repeat="month in months">
+                        <a href="#" ng-click="$event.preventDefault();changeMonth('begin',month);resetSwitch()">
+                            [[ month.month_string ]]
+                        </a>
+                    </div>
+                </div>
+
+                <div class="cloud-select" ng-class="switch_select.begin.days">
+                    <div class="select-day-element" ng-repeat="day in begin.current_days_array">
+                        <a href="#" ng-click="$event.preventDefault();changeDay('begin',day);resetSwitch()">
+                            [[ day.day_string ]]
+                        </a>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="date-row">
+            <div class="date-prefix">
+                Do
+            </div>
+            <div class="date-selectors">
+
+                <div class="date-input">
+                    <input
+                            type="text"
+                            placeholder="rok"
+                            maxlength="4"
+                            ng-click="resetSwitch()"
+                            ng-model="indexdata.date.end.year">
+                </div>
+                <div class="date-input">
+                    <input
+                            type="text"
+                            placeholder="miesiąc"
+                            ng-model="indexdata.date.end.month">
+                    <span class="over-input" ng-click="showSelectCloud('end.months')"></span>
+                </div>
+                <div class="date-input">
+                    <input
+                            type="text"
+                            placeholder="dzień"
+                            ng-model="indexdata.date.end.day">
+                    <span class="over-input" ng-click="showSelectCloud('end.days')"></span>
+                </div>
+
+                <div class="cloud-select" ng-class="switch_select.end.months">
+                    <div class="select-day-element" ng-repeat="month in months">
+                        <a href="#" ng-click="$event.preventDefault();changeMonth('end',month);resetSwitch()">
+                            [[ month.month_string ]]
+                        </a>
+                    </div>
+                </div>
+
+                <div class="cloud-select" ng-class="switch_select.end.days">
+                    <div class="select-day-element" ng-repeat="day in end.current_days_array">
+                        <a href="#" ng-click="$event.preventDefault();changeDay('end',day);resetSwitch()">
+                            [[ day.day_string ]]
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--<div class="word-interval-row">-->
+            <!--<h3 class="time-sub-title">Wyszukiwanie przez index nazwa okresów</h3>-->
+            <!--<ul class="ul-alphabet">-->
+                <!--<li ng-repeat="lt in alphabet">-->
+                    <!--<a href="#" ng-click="$event.preventDefault();getIntervalsByLetter(lt)">-->
+                        <!--[[ lt ]]-->
+                    <!--</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+
+            <!--<div class="row">-->
+
+                <!--<div class="col-sm-6">-->
+
+                    <!--<a href="#" ng-click="$event.preventDefault();setIntervalToSearch(inter)" class="tag-button" ng-repeat="inter in intervals.first">-->
+                        <!--[[ inter.name ]]-->
+                    <!--</a>-->
+
+                <!--</div>-->
+
+                <!--<div class="col-sm-6">-->
+
+                    <!--<a href="#" ng-click="$event.preventDefault();setIntervalToSearch(inter)" class="tag-button" ng-repeat="inter in intervals.second">-->
+                        <!--[[ inter.name ]]-->
+                    <!--</a>-->
+
+                <!--</div>-->
+
+            <!--</div>-->
+
+        <!--</div>-->
+        <button class="search-index-bottom" ng-click="searchDelegate()">
+            Wyszukaj
+        </button>
+    </div>
+
+    <div index-place-cloud ng-class="indexview.places"></div>
+    <div index-tags-cloud ng-class="indexview.tags"></div>
+
+</div>
+
+

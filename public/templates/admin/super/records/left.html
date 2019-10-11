@@ -1,0 +1,54 @@
+<form ng-submit="searchSubmit()">
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </span>
+        <input
+                type="text"
+                class="form-control"
+                placeholder="Wpisz frazę"
+                aria-describedby="basic-addon1"
+                ng-model="frase"
+        >
+    </div>
+    <div class="checkbox" style="display: none">
+        <label class="col-xs-12 col-sm-12 col-md-6">
+            <input type="checkbox" ng-model="searchcolumns.title"> Tytuł
+        </label>
+        <label class="col-xs-12 col-sm-12 col-md-6">
+            <input type="checkbox" ng-model="searchcolumns.signature"> Sygnatura
+        </label>
+        <label class="col-xs-12 col-sm-12 col-md-6">
+            <input type="checkbox" ng-model="searchcolumns.source"> Plik
+        </label>
+        <label class="col-xs-12 col-sm-12 col-md-6">
+            <input type="checkbox" ng-model="searchcolumns.xmltrans"> XML
+        </label>
+        <label class="col-xs-12 col-sm-12 col-md-6">
+            <input type="checkbox" ng-model="searchcolumns.description"> Krótki opis
+        </label>
+        <label class="col-xs-12 col-sm-12 col-md-6">
+            <input type="checkbox" ng-model="searchcolumns.summary"> Pełny opis
+        </label>
+    </div>
+    <div class="clearfix"></div>
+    <hr>
+    <div class="form-group">
+        <label for="filetypeID">Typ pliku</label>
+        <select
+                name="filetype"
+                id="filetypeID"
+                class="form-control"
+                ng-model="filter.filetype"
+        >
+
+            <option value="all">Wszystkie</option>
+            <option value="video">Video</option>
+            <option value="audio">Audio</option>
+
+        </select>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary btn-full-length">Szukaj</button>
+</form>

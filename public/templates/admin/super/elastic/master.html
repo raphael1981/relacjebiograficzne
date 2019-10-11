@@ -1,0 +1,134 @@
+<div ng-init="initData()">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <div ng-if="raports.records!=''">
+                <div class="row">
+                    <div class="col-sm-6">
+                        data rozpoczęcia indexowania:
+                        <h4>
+                            <span class="label label-gray">
+                                [[ raports.records.start_at | date : 'dd.MM.yyyy HH:mm:ss' ]]
+                            </span>
+                        </h4>
+                    </div>
+                    <div class="col-sm-6">
+                        data zakończenia indexowania:
+                        <h4>
+                            <span class="label label-gray">
+                                [[ raports.records.end_at | date : 'dd.MM.yyyy HH:mm:ss' ]]
+                            </span>
+                        </h4>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <button
+                            type="button"
+                            class="btn btn-primary btn-lg btn-full-length"
+                            ng-click="makeIndexRecords()"
+                            ng-disabled="btnrecords"
+                    >
+                        Indeksuj nagrania
+                    </button>
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-danger btn-full-length" ng-click="forceIndexRecords()">
+                        Wymuś indeksowanie i zamknij wyszystkie raporty
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-12">
+            <div ng-if="raports.images!=''">
+                <div class="row">
+                    <div class="col-sm-6">
+                        data rozpoczęcia indexowania:
+                        <h4>
+                            <span class="label label-gray">
+                                [[ raports.images.start_at | date : 'dd.MM.yyyy HH:mm:ss' ]]
+                            </span>
+                        </h4>
+                    </div>
+                    <div class="col-sm-6">
+                        data zakończenia indexowania:
+                        <h4>
+                            <span class="label label-gray">
+                                [[ raports.images.end_at | date : 'dd.MM.yyyy HH:mm:ss' ]]
+                            </span>
+                        </h4>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <button
+                            type="button"
+                            class="btn btn-info btn-lg btn-full-length"
+                            ng-click="makeIndexImages()"
+                            ng-disabled="btnimages"
+                    >
+                        Indeksuj obrazki
+                    </button>
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-danger btn-full-length" ng-click="forceIndexImages()">
+                        Wymuś indeksowanie i zamknij wyszystkie raporty
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-12">
+            <div ng-if="raports.gallery!=''">
+                <div class="row">
+                    <div class="col-sm-6">
+                        data rozpoczęcia indexowania:
+                        <h4>
+                            <span class="label label-gray">
+                                [[ raports.gallery.start_at | date : 'dd.MM.yyyy HH:mm:ss' ]]
+                            </span>
+                        </h4>
+                    </div>
+                    <div class="col-sm-6">
+                        data zakończenia indexowania:
+                        <h4>
+                            <span class="label label-gray">
+                                [[ raports.gallery.end_at | date : 'dd.MM.yyyy HH:mm:ss' ]]
+                            </span>
+                        </h4>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <button
+                            type="button"
+                            class="btn btn-warning btn-lg btn-full-length"
+                            ng-click="makeIndexGallery()"
+                            ng-disabled="btngallery"
+                    >
+                        Indeksuj galerie
+                    </button>
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-danger btn-full-length" ng-click="forceIndexGallery()">
+                        Wymuś indeksowanie i zamknij wyszystkie raporty
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

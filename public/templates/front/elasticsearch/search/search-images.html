@@ -1,0 +1,19 @@
+<div menu-search></div>
+
+<div class="container-fluid ahm-container">
+    <div class="search-result">
+        <div class="over-loading-search" ng-if="search_process_svg">
+            <img src="/images/loading.svg" class="img-responsive">
+        </div>
+
+        <div class="slide-record-gallery-search">
+
+            <div id="photoswipe" photo-swipe-search images="data.images" figure-class="" search-images="true">
+            </div>
+
+        </div>
+
+        <div photo-slider oncontextmenu="return false"></div>
+
+    </div>
+</div>

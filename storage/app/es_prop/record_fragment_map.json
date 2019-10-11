@@ -1,0 +1,60 @@
+{
+  "mappings": {
+    "<name_of_type>":{
+      "properties": {
+        "id":{
+          "type": "integer"
+        },
+        "title":{
+          "type": "text"
+        },
+        "fragments":{
+          "properties":{
+            "fid":{
+              "type":"integer"
+            },
+            "record_id":{
+              "type":"integer"
+            },
+            "start":{
+              "type":"integer"
+            },
+            "content":{
+              "type":"text",
+              "analyzer": "morfologik"
+            }
+          }
+        },
+        "images":{
+          "properties":{
+            "image_name":{
+              "type":"text"
+            },
+            "image_link":{
+              "type":"text"
+            },
+            "image_size":{
+              "type":"text"
+            },
+            "tags":{
+              "type": "text",
+              "analyzer": "morfologik"
+            },
+            "description":{
+              "type": "text",
+              "analyzer": "morfologik"
+            },
+            "all":{
+              "type":"text",
+              "analyzer": "morfologik"
+            }
+          }
+        }
+      }
+    }
+  },
+  "settings": {
+    "number_of_shards": 5,
+    "number_of_replicas": 1
+  }
+}

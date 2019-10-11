@@ -1,0 +1,60 @@
+<div class="row" ng-init="initData()">
+    <div class="col-xs-12 col-sm-12 col-md-3">
+        <div show-search-criteria></div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-9">
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <form class="form-horizontal" ng-submit="addNewTread()">
+                    <div class="form-group" ng-class="nthreadclass">
+                        <div class="col-xs-12 col-sm-8 col-md-6">
+                            <input type="text" class="form-control" ng-model="thread" ng-change="checkThread()" placeholder="Temat">
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-6">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-plus-square" aria-hidden="true"></i> Dodaj temat
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <div
+                class="row"
+                ng-repeat="el in elements"
+        >
+
+            <div class="col-xs-12 col-sm-12 col-md-6" ng-init="basename[$index]=el.name">
+                <a
+                        href="#"
+                        editable-text="el.name"
+                        onbeforesave="checkThread($data,$index)"
+                        onaftersave="changeThread($data,el.id)"
+                        e-label="">
+                    <h4>[[ el.name || 'empty' ]]</h4>
+                </a>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-4">
+                <a
+                        href="#/edit/links/[[ el.id ]]"
+                        class="btn btn-info"
+                >
+                    Powiązania z nagraniami
+                </a>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-2">
+                <div delete-element id="[[ el.id ]]"></div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<div show-pagination-route></div>
+

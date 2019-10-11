@@ -1,0 +1,59 @@
+<div class="container-fluid ahm-container">
+
+    <div
+            class="row"
+            ng-init="initData()"
+    >
+
+
+        <div class="col-xs-12 col-sm-12">
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+
+                    <form
+                            class="form-inline form-search-inline"
+                            ng-submit="onSubmit()"
+                            ng-init="initData()"
+                    >
+                        <div class="form-group group-search">
+
+                            <div class="input-group">
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="ahmsearch"
+                                        placeholder="Wyszukaj zdjęcia"
+                                        ng-model="data.search.frase"
+                                        ng-change="getSuggest()"
+                                >
+
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-search"></button>
+
+
+
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="row images-search-view">
+                <div
+                        class="col-xs-12 col-sm-12 col-md-12"
+                >
+
+                    <div class="table-cont-images">
+                        <div id="photoswipe" photo-swipe images="data.images" figure-class="search-element-image" auth="[[ auth ]]"></div>
+                    </div>
+
+                    <div photo-slider oncontextmenu="return false"></div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

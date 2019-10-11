@@ -1,0 +1,101 @@
+<div class="media-show jumbotron">
+
+    <div class="row">
+        <div
+                ng-repeat="img in media"
+                class="col-xs-12 col-sm-6 col-md-2"
+                ng-init="mediaconfig[$index]={
+                            maxWidth:img.rootsize[0],
+                            float:'none',
+                            hideform:true
+                            }">
+
+            <div class="img-over-div">
+
+                <div class="overphoto-click-cont">
+                    <img src="[[ img.image ]]" class="img-responsive thumbnail">
+                    <a href="#" class="overphoto-click" ng-click="clickImageInLibrary($index,img);$event.preventDefault()"></a>
+                </div>
+
+
+                <button
+                        class="btn btn-warning btn-full-length"
+                        ng-click="
+                            $event.preventDefault();
+                            (mediaconfig[$index].hideform==false)?(mediaconfig[$index].hideform=true):(mediaconfig[$index].hideform=false)
+                        "
+                >
+                    Konfiguruj zdjęcie
+                </button>
+
+                <form name="cssconfig" class="text-center" ng-hide="mediaconfig[$index].hideform">
+                    <label>
+                        Maxymalna szerokość (px)
+                    </label>
+                    <div class="alert alert-danger" ng-if="!cssconfig.mwidth.$valid">
+                        Wpisz liczbę całkowitą
+                    </div>
+
+                    <div
+                            class="input-group"
+                            ng-model="mediaconfig[$index].validmaxwidth"
+                            ng-init="mediaconfig[$index].validmaxwidth=mediaconfig[$index].maxWidth"
+                    >
+                      <span class="input-group-btn">
+                          <button
+                                  type="button"
+                                  class="btn btn-default btn-number"
+                                  ng-mousedown="changeMaxWidthMouseDown('minus',$index)"
+                                  ng-mouseup="changeMaxWidthMouseUp($index)"
+                          >
+                              <i class="fa fa-minus" aria-hidden="true"></i>
+                          </button>
+                      </span>
+
+                      <input
+                              type="text"
+                              name="mwidth"
+                              disabled placeholder="Maxymalna szerokość"
+                              class="form-control input-number"
+                              ng-model="mediaconfig[$index].maxWidth"
+                              ng-pattern="/^[0-9]+$/"
+                      >
+
+                      <span class="input-group-btn">
+                          <button
+                                  type="button"
+                                  class="btn btn-default btn-number"
+                                  ng-mousedown="changeMaxWidthMouseDown('plus',$index)"
+                                  ng-mouseup="changeMaxWidthMouseUp($index)"
+                          >
+                              <i class="fa fa-plus" aria-hidden="true"></i>
+                          </button>
+                      </span>
+                    </div>
+
+
+                    <label>
+                        <select class="form-control" ng-model="mediaconfig[$index].float">
+                            <option value="none">none</option>
+                            <option value="image-left">Wyrównaj do lewej</option>
+                            <option value="image-right">Wyrównaj do prawej</option>
+                        </select>
+                    </label>
+                </form>
+
+                <!--<button class="btn btn-info btn-full-length" ng-click="$parent.$parent.newartdata.intro_image=img;$event.preventDefault();">-->
+                    <!--Ilustracja wprowadzenia-->
+                <!--</button>-->
+
+                <!--<button class="btn btn-success btn-full-length" ng-click="$parent.$parent.addSiteCollect();$parent.$parent.imagetoadd=img;$event.preventDefault();">-->
+                    <!--Użyj w treści artykułu-->
+                <!--</button>-->
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>

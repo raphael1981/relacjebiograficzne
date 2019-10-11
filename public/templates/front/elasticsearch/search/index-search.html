@@ -1,0 +1,96 @@
+<div menu-search></div>
+
+<div class="container-fluid ahm-container">
+    <div class="search-result">
+        <div class="over-loading-search" ng-if="search_process_svg">
+            <img src="/images/loading.svg" class="img-responsive">
+        </div>
+
+        <div class="result-element" ng-repeat="el in data.result">
+            <div class="result-record-title">
+                <div class="icon">
+                    <img src="/images/[[ el.type ]]-icon.svg" class="img-responsive">
+                </div>
+                <div class="title-and-dur">
+                    <h3>
+                        <a ng-if="auth" href="/[[ el.type ]]/[[ el.record_id ]]-[[ el.record_alias ]]/0">
+                            [[ el.name ]]
+                        </a>
+                        <a ng-if="!auth" href="/demo/[[ el.type ]]/[[ el.record_id ]]-[[ el.record_alias ]]/0">
+                            [[ el.name ]]
+                        </a>
+                    </h3>
+                    <h4>[[ el.duration | timeToMinute]]</h4>
+                </div>
+            </div>
+
+
+
+            <div class="fragments">
+                <div class="row-element-search" ng-repeat="f in el.fragments | orderBy: 'start'">
+                    <div class="col-link-fragment">
+
+                        <div class="arrow-link">
+                            <div class="arrow-left">
+                                <a ng-if="auth" href="/[[ el.type ]]/[[ el.record_id ]]-[[ el.record_alias ]]/[[ f.start ]]?backindex=[[ $parent.params_to_href ]]">
+                                    <img src="/images/fragment_arrow.jpg" class="img-responsive">
+                                </a>
+                                <a ng-if="!auth" href="/demo/[[ el.type ]]/[[ el.record_id ]]-[[ el.record_alias ]]/[[ f.start ]]?backindex=[[ $parent.params_to_href ]]">
+                                    <img src="/images/fragment_arrow.jpg" class="img-responsive">
+                                </a>
+
+                            </div>
+                            <div class="start-right">
+                                <a ng-if="auth" href="/[[ el.type ]]/[[ el.record_id ]]-[[ el.record_alias ]]/[[ f.start ]]?backindex=[[ $parent.params_to_href ]]">
+                                    [[ f.start | timeToMinute ]]
+                                </a>
+                                <a ng-if="!auth" href="/demo/[[ el.type ]]/[[ el.record_id ]]-[[ el.record_alias ]]/[[ f.start ]]?backindex=[[ $parent.params_to_href ]]">
+                                    [[ f.start | timeToMinute ]]
+                                </a>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-highlight">
+                        <div class="fragments-show-highlight">
+                            [[ f.content | contentTrim : 30 ]]
+                        </div>
+
+                        <!--<div>-->
+                            <!--<h5>Intervals</h5>-->
+                            <!--<span class="label label-primary" ng-repeat="int in f.intervals">-->
+                                <!--[[ int ]]-->
+                            <!--</span>-->
+                        <!--</div>-->
+                        <!--<div>-->
+                            <!--<h5>Tags</h5>-->
+                            <!--<span class="label label-primary" ng-repeat="tags in f.tags">-->
+                                <!--[[ tags.name ]]-->
+                            <!--</span>-->
+                        <!--</div>-->
+                        <!--<div>-->
+                            <!--<h5>Places</h5>-->
+                            <!--<span class="label label-primary" ng-repeat="place in f.places">-->
+                                <!--[[ place.name ]]-->
+                            <!--</span>-->
+                        <!--</div>-->
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="more-section">
+        <a href="#" ng-if="show_next_button" class="button-more-search" ng-click="nextPagIndex();$event.preventDefault()">
+            pokaż więcej
+        </a>
+    </div>
+
+    <h3 class="result-none" ng-if="search_start && data.result==null">
+        Brak wyników spełniających kryteria wyszukiwania
+    </h3>
+
+</div>

@@ -1,0 +1,91 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-12">
+        <nav>
+            <ul class="pagination" ng-if="minimalist">
+
+                <li>
+                    <a href="#/" ng-click="changeShowFirst();$event.preventDefault()" ng-if="start!=0">
+                        <span aria-hidden="true">Pierwsza</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#/" aria-label="Previous" ng-click="changePagePrev();$event.preventDefault()" ng-if="start!=0">
+                    <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+
+                <li ng-repeat="f in first" ng-class="f.pclass">
+                    <a href="#/" ng-click="changePage(f.start);$event.preventDefault()">
+                    [[ f.nr ]]
+                                    <span class="sr-only">
+                                        (current)
+                                    </span>
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="#/" ng-click="goToHalf();$event.preventDefault()">
+                        ...
+                                    <span class="sr-only">
+                                        (current)
+                                    </span>
+                    </a>
+                </li>
+
+
+                <li ng-repeat="l in last" ng-class="l.pclass">
+                    <a href="#/" ng-click="changePage(l.start);$event.preventDefault()">
+                        [[ l.nr ]]
+                                    <span class="sr-only">
+                                        (current)
+                                    </span>
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="#/" aria-label="Next" ng-click="changePageNext();$event.preventDefault()" ng-if="limit<=(count-start)">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+
+                <!--<li>-->
+                    <!--<a href="#" ng-click="changeShowLast();$event.preventDefault()" ng-if="limit<=(count-start)">-->
+                        <!--<span aria-hidden="true">Ostatnia</span>-->
+                    <!--</a>-->
+                <!--</li>-->
+
+                <li>
+                    &nbsp;
+                    <input type="text" ng-model="$parent.gotopag" size="4" style="border-radius: 4px;border: 1px solid #CCC;height: 34px">
+                    <button type="button" ng-click="goToPag()" class="btn btn-default">przejdź</button>
+                </li>
+
+            </ul>
+
+
+            <ul class="pagination" ng-if="!minimalist">
+
+                <li ng-repeat="p in pag" ng-class="p.pclass">
+                    <a href="#/" ng-click="changePage(p.start);$event.preventDefault()">
+                        [[ p.nr ]]
+                        <span class="sr-only">
+                            (current)
+                        </span>
+                    </a>
+                </li>
+
+                <li>
+                    &nbsp;
+                    <input type="text" ng-model="$parent.gotopag" size="4" style="border-radius: 4px;border: 1px solid #CCC;height: 34px">
+                    <button type="button" ng-click="goToPag()" class="btn btn-default">przejdź</button>
+                </li>
+
+            </ul>
+
+
+        </nav>
+    </div>
+</div>

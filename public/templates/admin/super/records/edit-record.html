@@ -1,0 +1,293 @@
+<div class="row" ng-init="initData()">
+
+    <div class="col-xs-12 col-sm-12 col-form-new-record">
+
+        <div class="raport loading-saving" ng-class="rsaving" ng-init="rsaving='hidden'">
+            <img src="/images/loading.svg" class="img-responsive">
+        </div>
+
+        <div class="raport loading-saved" ng-class="rsaved" ng-init="rsaved='hidden'" ng-click="rsaved='hidden'">
+            <h2 ng-click="rsaved='hidden'">Nagranie zostało zaktualizowane</h2>
+        </div>
+
+        <!--<div class="alert alert-info">-->
+            <!--<i class="fa fa-info-circle" aria-hidden="true"></i> Nie dodanie transkrypcji w xml spowoduje utworzenie nowego dokumentu na bazie tytułu nagrania.-->
+        <!--</div>-->
+
+        <form class="form-horizontal" ng-submit="updateRecord()">
+            <fieldset>
+
+
+                <legend>Edycja Nagrania</legend>
+
+                <!-- Multiple Radios (inline) -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Typ Nagrania</label>
+                    <div class="col-md-10">
+                        <label class="radio-inline" for="radios-0">
+                            <input
+                                    type="radio"
+                                    name="radios"
+                                    id="radios-0"
+                                    ng-model="record.type"
+                                    value="video"
+                            >
+                            Video
+                        </label>
+                        <label class="radio-inline" for="radios-1">
+                            <input
+                                    type="radio"
+                                    name="radios"
+                                    id="radios-1"
+                                    ng-model="record.type"
+                                    value="audio"
+                            >
+                            Audio
+                        </label>
+                    </div>
+                </div>
+
+
+                <div class="form-group" ng-class="classes.title">
+                    <label class="col-md-2 control-label" for="title">Tytuł</label>
+                    <div class="col-md-10">
+                        <input
+                                id="title"
+                                name="title"
+                                type="text"
+                                placeholder="Tytuł"
+                                class="form-control input-md"
+                                ng-model="record.title"
+                                ng-change="checkTitle()"
+                        >
+                    </div>
+                </div>
+
+
+                <div class="form-group" ng-class="classes.signature">
+                    <label class="col-md-2 control-label" for="signature">Sygnatura</label>
+                    <div class="col-md-10">
+                        <input
+                                id="signature"
+                                name="title"
+                                type="text"
+                                placeholder="Sygnatura"
+                                class="form-control input-md"
+                                ng-model="record.signature"
+                                ng-change="checkSignature()"
+                        >
+                    </div>
+                </div>
+
+
+                <div class="form-group" ng-class="classes.source">
+                    <label class="col-md-2 control-label">Źródło</label>
+                    <div class="col-md-4">
+
+                        <select
+                                name="sources"
+                                id="sourcesIDAudio"
+                                class="form-control"
+                                ng-if="record.type=='audio'"
+                                ng-options="option.filename for option in sources.audio track by option.filename"
+                                ng-model="record.source" ng-change="getTransDuration(record.source)"></select>
+
+                        <select
+                                name="sources"
+                                id="sourcesIDViedo"
+                                class="form-control"
+                                ng-if="record.type=='video'"
+                                ng-options="option.filename for option in sources.video track by option.filename"
+                                ng-model="record.source" ng-change="getTransDuration(record.source)"></select>
+
+                        <span id="helpBlock" class="help-block" ng-if="sourcealert">Wybierz nagranie lub poczekaj na zlicznie czasu trwania</span>
+
+                    </div>
+                    <div class="col-md-3">
+                        <img src="/images/loading.svg" ng-if="loadingfile" style="margin: 20px auto 0 auto; width: 30px;display: block">
+                        <div id="appendSource">
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <img src="/images/loading.svg" ng-if="loadingfile" style="margin: 20px auto 0 auto; width: 30px; display: block">
+                        <div ng-if="record.duration!=null">
+                            <i class="fa fa-hourglass" aria-hidden="true"></i> Czas trwania w sekundach: <b>[[ record.duration ]]</b>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Upload XML</label>
+                    <div class="col-md-4">
+
+                        <div
+                                ngf-drop
+                                ng-model="file"
+                                ngf-multiple="false"
+                                ngf-allow-dir="true"
+                                class="drop-box">
+
+                        </div>
+
+
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: [[ progress ]]%;">
+                                [[ progress ]]%
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+
+
+                        <div ng-if="record.xmltrans.filename">
+                            <div class="alert alert-success" ng-if="$parent.xmluploadstatus=='original'">
+                                Plik xml znajduje się na serwerze - aby zaktualizować nagranie po zapisie zrzuć plik na chmurkę.
+                            </div>
+                            <div class="alert alert-success" ng-if="$parent.xmluploadstatus=='new'">
+                                Nowy plik xml został umieszczony na serwerze.
+                            </div>
+                            <i class="fa fa-file-code-o" aria-hidden="true"></i> [[ record.xmltrans.filename ]]
+                            <button
+                                    type="button"
+                                    class="btn btn-default"
+                                    ng-if="$parent.xmluploadstatus=='new'"
+                                    ng-click="removeXmlFile($parent.record.xmltrans)"
+                            >
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </button>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Świadkowie</label>
+                    <div class="col-md-10">
+
+                        <ui-select
+                                multiple
+                                ng-model="record.interviewees"
+                                theme="bootstrap"
+                                ng-disabled="false"
+                                sortable="true"
+                                close-on-select="true"
+                                style="width: 100%;"
+                                title="Single property binding with async data"
+                                ng-change="showSelectedClients()"
+                        >
+                            <ui-select-match
+                                    placeholder="">
+                                <span class="big-label">[[$item.name ]] [[$item.surname]]</span>
+                            </ui-select-match>
+
+                            <ui-select-choices
+                                    repeat="person.id as person in interviewees | propsFilter: {name: $select.search, surname: $select.search}"
+                            >
+
+                                <h4 class="select-suggest-h4">[[person.name]] [[person.surname]]</h4>
+
+                            </ui-select-choices>
+                        </ui-select>
+
+                    </div>
+                </div>
+
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Redaktorzy</label>
+                    <div class="col-md-10">
+
+                        <ui-select
+                                multiple
+                                ng-model="record.redactors"
+                                theme="bootstrap"
+                                ng-disabled="false"
+                                sortable="true"
+                                close-on-select="true"
+                                style="width: 100%;"
+                                title="Single property binding with async data"
+                                ng-change=""
+                        >
+                            <ui-select-match
+                                    placeholder="">
+                                <span class="big-label">[[$item.name ]] [[$item.surname]] - [[ $item.profession ]]</span>
+                            </ui-select-match>
+
+                            <ui-select-choices
+                                    repeat="person.id as person in redactors | propsFilter: {name: $select.search, surname: $select.search}"
+                            >
+
+                                <h4 class="select-suggest-h4">[[person.name]] [[person.surname]] - [[ person.profession ]]</h4>
+
+                            </ui-select-choices>
+                        </ui-select>
+
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Wprowadzenie</label>
+                    <div class="col-md-10">
+
+                        <wysiwyg
+                                textarea-id="introtextID"
+                                textarea-class="form-control"
+                                textarea-height="100px"
+                                textarea-name="textareaIntro"
+                                textarea-required
+                                ng-model="record.description"
+                                enable-bootstrap-title="true"
+                                textarea-menu="model.menu"
+                                textarea-custom-menu="model.customMenu"
+                                textarea-custom-functions="model.customFunctions"></wysiwyg>
+
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Pełny opis</label>
+                    <div class="col-md-10">
+
+
+                        <wysiwyg
+                                textarea-id="introtextID"
+                                textarea-class="form-control"
+                                textarea-height="100px"
+                                textarea-name="textareaIntro"
+                                textarea-required
+                                ng-model="record.summary"
+                                enable-bootstrap-title="true"
+                                textarea-menu="model.menu"
+                                textarea-custom-menu="model.customMenu"
+                                textarea-custom-functions="model.customFunctions"></wysiwyg>
+
+                    </div>
+                </div>
+
+
+                <!-- Button -->
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <button name="singlebutton" class="btn btn-primary btn-full-length btn-lg btn-save-record">Aktualizuj Nagranie</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+
+
+    </div>
+
+</div>

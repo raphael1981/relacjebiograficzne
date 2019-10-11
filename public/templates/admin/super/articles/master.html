@@ -1,0 +1,69 @@
+<div class="row" ng-init="initData()">
+    <div class="col-xs-12 col-sm-12 col-md-3">
+        <div left-list-articles></div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-9">
+        <div
+                class="row"
+                ng-repeat="el in elements"
+        >
+
+            <div class="col-xs-12 col-sm-12 col-md-2">
+
+
+                <img
+                        src="/image/[[ el.intro_image ]]/[[ el.disk ]]/550"
+                        class="img-responsive thumbnail"
+                        ng-if="el.intro_image!=''"
+                >
+
+                <h5 ng-if="el.intro_image==''">
+                    Brak obrazka
+                </h5>
+
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2">
+                <h4>
+
+                    <a href="#/edit/[[ el.id ]]">
+                        [[ el.title ]]
+                    </a>
+
+                </h4>
+            </div>
+            <div
+                    class="col-xs-12 col-sm-12 col-md-3"
+
+            >
+                <a
+                        href="#"
+                        ng-click="(calclass[$index]=='hidden')?(calclass[$index]=''):(calclass[$index]='hidden');$event.preventDefault();"
+                >
+                    <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                    [[ el.published_at | dateformat | date: 'dd.MM.yyyy HH:m:s' ]]
+
+                </a>
+
+                <div class="cloud-calendar" ng-class="calclass[$index]" ng-init="calclass[$index]='hidden'">
+                    <datetimepicker data-ng-model="datainstock[$index]" data-datetimepicker-config="{ startView:'day' }" data-on-set-time="onTimeSet(newDate, el.id, $index)"/>
+                </div>
+
+
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2">
+                <div main-btn="[[ el.main ]]" artid="[[ el.id ]]"></div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-1">
+                <div status-btn-in-list="[[ el.status ]]" artid="[[ el.id ]]"></div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2">
+                <div delete-element id="[[ el.id ]]"></div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+<div show-pagination-route></div>

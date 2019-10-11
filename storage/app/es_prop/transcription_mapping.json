@@ -1,0 +1,29 @@
+{
+  "mappings": {
+    "<name_of_type>":{
+      "properties": {
+        "fid":{
+          "type": "integer"
+        },
+        "content":{
+          "type": "text",
+          "analyzer": "polish"
+        },
+        "start":{
+          "type": "integer"
+        },
+        "record_id":{
+          "type":"integer"
+        },
+        "record_title":{
+          "type": "text",
+          "analyzer": "standard"
+        }
+      }
+    }
+  },
+  "settings": {
+    "number_of_shards": 5,
+    "number_of_replicas": 1
+  }
+}

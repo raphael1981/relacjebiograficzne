@@ -1,0 +1,15 @@
+<figure class="{{ fclass }} {{ img.orientation }}" itemprop="associatedMedia" ng-model="images_cloud" ng-init="images_cloud=$index" itemscope itemtype="http://schema.org/ImageObject" ng-repeat="img in images">
+
+    <div class="image-content" ng-switch on="img.type">
+        <div ng-switch-default>
+            <a href="{{img._source.image_link}}" itemprop="contentUrl" data-size="{{img._source.image_size}}" class="open-gallery-image">
+                <!--<div class="curtain onegall"></div>-->
+                <img ng-src="{{img._source.image_link}}" itemprop="thumbnail" alt="{{img._source.description}}" class="open-gallery-image img-responsive" />
+            </a>
+            <!--<div class="tlo-gif"><img src="/images/loading.svg"></div>-->
+        </div>
+    </div>
+
+    <figcaption itemprop="caption description" style="color:transparent">{{img._source.description}}</figcaption>
+
+</figure>

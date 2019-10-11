@@ -1,0 +1,44 @@
+<div class="row" ng-init="initData()">
+    <div class="col-xs-12 col-sm-12 col-md-3">
+        <div left-list-transcriptions></div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-9">
+
+        <div
+                class="row"
+                ng-repeat="el in elements"
+        >
+            <div class="col-xs-12 col-sm-12 col-md-3">
+                <h4>
+                    <a href="#/edit/[[ el.id ]]">
+                        [[ el.title ]]
+                    </a>
+                </h4>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3">
+
+                <a href="#/tags/[[ el.id ]]" class="btn btn-warning">
+                    <i class="fa fa-tags" aria-hidden="true"></i> Tagowanie nagrania
+                </a>
+                <!--<a href="#/link/[[ el.id ]]" class="btn btn-info">-->
+                    <!--<i class="fa fa-code-fork" aria-hidden="true"></i> Powiąż nagranie-->
+                <!--</a>-->
+                <!--<a href="#/intervals/[[ el.id ]]" class="btn btn-primary">-->
+                    <!--<i class="fa fa-tags" aria-hidden="true"></i> Oznaczanie interwałami czasowymi nagrania-->
+                <!--</a>-->
+
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2">
+                <i class="fa fa-hourglass"></i> [[ el.duration ]] sekund
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2">
+                <div status-btn-in-list="[[ el.status ]]" artid="[[ el.id ]]"></div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2">
+                <div delete-element id="[[ el.id ]]"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div show-pagination-route></div>

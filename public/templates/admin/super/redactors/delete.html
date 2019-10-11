@@ -1,0 +1,61 @@
+<button
+        class="btn btn-danger"
+        ng-click="showshadow='show';getBeforeDeleteRaport()"
+>
+    <i class="fa fa-times" aria-hidden="true"></i>
+</button>
+
+<div
+        class="shadow-delete"
+        ng-class="showshadow"
+        ng-init="showshadow=''"
+>
+
+    <div class="raport-before-delete">
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <div class="alert alert-warning" role="alert">
+                    Uwaga! Usunięcie rozmówcy spowoduje zerwanie relacji z innymi elementami.<br>
+                    Pozor! Vyjmutí volajícího naruší vztahy s dalšími prvky
+                </div>
+                <div class="relations-view">
+                    <div class="page-header">
+                        <h3>Relacje</h3>
+                    </div>
+
+                    <div ng-repeat="rel in raport.relations">
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-3">
+                                <h4>[[ rel.name ]]</h4>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-9">
+                                <div ng-repeat="rcontent in rel.data">
+                                    <div ng-bind-html="rcontent | delraportview"></div>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="delete-btns-beam">
+                    <button
+                            class="btn btn-default"
+                            type="button"
+                            ng-click="showshadow=''">Anuluj</button>
+                    <button
+                            class="btn btn-danger"
+                            type="button"
+                            ng-click="deleteElement()"
+                    >
+                        Usuń
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

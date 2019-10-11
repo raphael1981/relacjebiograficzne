@@ -1,0 +1,62 @@
+/*---------------------------------------------------
+LESS Elements 0.9
+---------------------------------------------------
+A set of useful LESS mixins
+More info at: http://lesselements.com
+---------------------------------------------------*/
+nav {
+  min-height: 70px;
+}
+.loading {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 2;
+  text-align: center;
+}
+.drop-box {
+  width: 100%;
+  height: 400px;
+  background: url("../images/upload-cloud.jpg") center center;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.btn-group-sm > .btn.btn-add-image {
+  font-size: 2rem;
+}
+.img-over-div {
+  min-height: 570px;
+}
+.img-over-div .overphoto-click-cont {
+  position: relative;
+}
+.img-over-div .overphoto-click-cont a.overphoto-click {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.img-over-div .overphoto-click-cont a.overphoto-click:hover {
+  background: url("../images/add-image-word.png") no-repeat center 10% rgba(0, 0, 0, 0.6);
+}
+.btn-full-length {
+  width: 100%;
+}
+.alphaHide {
+  opacity: 0;
+}
+.alphaShow {
+  opacity: 1;
+  transition: 700ms opacity;
+  -webkit-transition: 700ms opacity;
+  -moz-transition: 700ms opacity;
+  -ms-transition: 700ms opacity;
+  -o-transition: 700ms opacity;
+}
+.nav.menu.section-admin-menu li {
+  display: inline-block;
+}

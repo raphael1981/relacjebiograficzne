@@ -1,0 +1,26 @@
+<div class="if-exist" ng-if="showlinked">
+    <h3 class="section-title-h3">Zobacz także</h3>
+    <div class="row linked-row">
+
+        <div class="col-xs-12 col-sm-12 col-md-6 linked-col" ng-repeat="r in linked">
+            <div class="interviewee-content">
+
+                <!--<img src="/images/[[ r.record.type ]]-icon.svg" class="svg-icon">-->
+
+                <img src="/img/filter/[[ r.interviewee.portrait ]]/[[ r.interviewee.disk ]]/440" class="img-responsive classic-respo">
+
+                <div class="loading">
+                    <img src="/images/loading.svg">
+                </div>
+            </div>
+
+            <h2>
+                <a href="/[[ r.record.type ]]/[[ r.record.id ]]-[[ r.record.alias ]]">
+                    [[ r.interviewee.name ]] [[ r.interviewee.surname ]]
+                </a>
+            </h2>
+
+        </div>
+
+    </div>
+</div>

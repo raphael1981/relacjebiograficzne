@@ -1,0 +1,484 @@
+[
+  {
+    "name":"Akcja \"Burza\""
+  },
+  {
+    "name":"Akcja \"Wisła\""
+  },
+  {
+    "name":"Amnestia"
+  },
+  {
+    "name":"Amnestia — sowiecka"
+  },
+  {
+    "name":"Armia Andersa"
+  },
+  {
+    "name":"Armia Berlinga"
+  },
+  {
+    "name":"Armia czerwona"
+  },
+  {
+    "name":"Asymilacja"
+  },
+  {
+    "name":"Cenzura"
+  },
+  {
+    "name":"Czerwiec 1956"
+  },
+  {
+    "name":"Czerwiec 1976"
+  },
+  {
+    "name":"Deportacja"
+  },
+  {
+    "name":"Domy dziecka"
+  },
+  {
+    "name":"Drugi obieg"
+  },
+  {
+    "name":"Eksperymenty medyczne"
+  },
+  {
+    "name":"Emigracja"
+  },
+  {
+    "name":"Ewakuacja"
+  },
+  {
+    "name":"Ewakuacja więzień 1941"
+  },
+  {
+    "name":"Germanizacja"
+  },
+  {
+    "name":"Getta"
+  },
+  {
+    "name":"Gospodarka"
+  },
+  {
+    "name":"Grudzień 1970"
+  },
+  {
+    "name":"Harcerstwo"
+  },
+  {
+    "name":"Holokaust"
+  },
+  {
+    "name":"Imigracja"
+  },
+  {
+    "name":"Internowanie"
+  },
+  {
+    "name":"Jeńcy"
+  },
+  {
+    "name":"Kaszubi"
+  },
+  {
+    "name":"Kolektywizacja"
+  },
+  {
+    "name":"Koniec wojny"
+  },
+  {
+    "name":"Konspiracja"
+  },
+  {
+    "name":"Kościół (instytucja)"
+  },
+  {
+    "name":"Łagier"
+  },
+  {
+    "name":"Łemkowie"
+  },
+  {
+    "name":"Manifestacje"
+  },
+  {
+    "name":"Marzec 1968"
+  },
+  {
+    "name":"Mazurzy"
+  },
+  {
+    "name":"Białorusini"
+  },
+  {
+    "name":"Czesi"
+  },
+  {
+    "name":"Litwini"
+  },
+  {
+    "name":"Niemcy"
+  },
+  {
+    "name":"Ormianie"
+  },
+  {
+    "name":"Rosjanie"
+  },
+  {
+    "name":"Tatarzy"
+  },
+  {
+    "name":"Ukraińcy"
+  },
+  {
+    "name":"Obóz dla uchodźców"
+  },
+  {
+    "name":"Obóz jeniecki"
+  },
+  {
+    "name":"Obóz koncentracyjny"
+  },
+  {
+    "name":"Obóz pracy w PRL"
+  },
+  {
+    "name":"Obóz przejściowy"
+  },
+  {
+    "name":"Okupacja niemiecka"
+  },
+  {
+    "name":"Okupacja sowiecka po 17.09.1939"
+  },
+  {
+    "name":"Okupacja sowiecka po 5.01.1944"
+  },
+  {
+    "name":"Opozycja w PRL"
+  },
+  {
+    "name":"Organizacja młodzieżowa"
+  },
+  {
+    "name":"Organizacja polityczna"
+  },
+  {
+    "name":"Organizacja społeczna"
+  },
+  {
+    "name":"Organizacja wojskowa"
+  },
+  {
+    "name":"OUN/UPA"
+  },
+  {
+    "name":"Pacyfikacja"
+  },
+  {
+    "name":"KPP"
+  },
+  {
+    "name":"PPS"
+  },
+  {
+    "name":"PSL"
+  },
+  {
+    "name":"PPR/PZPR"
+  },
+  {
+    "name":"Paszportyzacja"
+  },
+  {
+    "name":"Październik 1956"
+  },
+  {
+    "name":"GL/AL"
+  },
+  {
+    "name":"BCh"
+  },
+  {
+    "name":"NSZ"
+  },
+  {
+    "name":"ZWZ/AK"
+  },
+  {
+    "name":"Pogromy"
+  },
+  {
+    "name":"Polacy w ZSRR"
+  },
+  {
+    "name":"Polacy za granicą"
+  },
+  {
+    "name":"Gestapo"
+  },
+  {
+    "name":"Policja granatowa"
+  },
+  {
+    "name":"Policja"
+  },
+  {
+    "name":"MO"
+  },
+  {
+    "name":"Polonizacja"
+  },
+  {
+    "name":"Polskie państwo podziemne"
+  },
+  {
+    "name":"Powstanie styczniowe"
+  },
+  {
+    "name":"Powstanie śląskie"
+  },
+  {
+    "name":"Powstanie w getcie"
+  },
+  {
+    "name":"Powstanie warszawskie"
+  },
+  {
+    "name":"Powstanie wielkopolskie"
+  },
+  {
+    "name":"Praca  przymusowa"
+  },
+  {
+    "name":"Praca  społeczna"
+  },
+  {
+    "name":"Proces i wyrok"
+  },
+  {
+    "name":"Propaganda"
+  },
+  {
+    "name":"Przemysł"
+  },
+  {
+    "name":"Przesiedlenie"
+  },
+  {
+    "name":"Przewrót majowy"
+  },
+  {
+    "name":"Przymusowe osiedlenie"
+  },
+  {
+    "name":"Islam"
+  },
+  {
+    "name":"Judaizm"
+  },
+  {
+    "name":"Katolicyzm"
+  },
+  {
+    "name":"Prawosławie"
+  },
+  {
+    "name":"Protestantyzm"
+  },
+  {
+    "name":"Repatriacja"
+  },
+  {
+    "name":"Represje niemieckie"
+  },
+  {
+    "name":"Represje sowieckie"
+  },
+  {
+    "name":"UB/SB"
+  },
+  {
+    "name":"Aresztowanie"
+  },
+  {
+    "name":"Egzekucje"
+  },
+  {
+    "name":"Przesłuchanie"
+  },
+  {
+    "name":"Przemoc seksualna"
+  },
+  {
+    "name":"Tortury"
+  },
+  {
+    "name":"Rewolucja"
+  },
+  {
+    "name":"Rolnictwo"
+  },
+  {
+    "name":"Romowie"
+  },
+  {
+    "name":"Rosja carska"
+  },
+  {
+    "name":"Rusyfikacja"
+  },
+  {
+    "name":"Sierpień 1980"
+  },
+  {
+    "name":"NKWD"
+  },
+  {
+    "name":"Wywiad wojskowy/cywilny"
+  },
+  {
+    "name":"Służba domowa"
+  },
+  {
+    "name":"Solidarność (NSZZ)"
+  },
+  {
+    "name":"Sport"
+  },
+  {
+    "name":"Stalinizm"
+  },
+  {
+    "name":"Stan wojenny"
+  },
+  {
+    "name":"Stosunki polsko-litewskie"
+  },
+  {
+    "name":"Stosunki polsko-niemieckie"
+  },
+  {
+    "name":"Stosunki polsko-rosyjskie"
+  },
+  {
+    "name":"Stosunki polsko-ukraińskie"
+  },
+  {
+    "name":"Stosunki polsko-żydowskie"
+  },
+  {
+    "name":"Strajk"
+  },
+  {
+    "name":"Strojbataliony (bataliony pracy)"
+  },
+  {
+    "name":"Szkolnictwo i edukacja"
+  },
+  {
+    "name":"Architektura"
+  },
+  {
+    "name":"Kino"
+  },
+  {
+    "name":"Literatura"
+  },
+  {
+    "name":"Sztuka ludowa"
+  },
+  {
+    "name":"Muzyka"
+  },
+  {
+    "name":"Teatr"
+  },
+  {
+    "name":"Sztuki plastyczne"
+  },
+  {
+    "name":"Ślązacy"
+  },
+  {
+    "name":"Ślub"
+  },
+  {
+    "name":"Święta"
+  },
+  {
+    "name":"Uchodźcy"
+  },
+  {
+    "name":"Ucieczka"
+  },
+  {
+    "name":"Warmiacy"
+  },
+  {
+    "name":"Warszawa po wojnie"
+  },
+  {
+    "name":"Wehrmacht"
+  },
+  {
+    "name":"Wielka czystka w ZSRR"
+  },
+  {
+    "name":"Więzienie"
+  },
+  {
+    "name":"Więźniowie polityczni"
+  },
+  {
+    "name":"Wojna polsko-bolszewicka"
+  },
+  {
+    "name":"Wojna rosyjsko-niemiecka 1941"
+  },
+  {
+    "name":"Wojsko II RP"
+  },
+  {
+    "name":"Wrzesień 1939"
+  },
+  {
+    "name":"Legiony Polskie"
+  },
+  {
+    "name":"Ludowe Wojsko Polskie"
+  },
+  {
+    "name":"Polskie Siły Zbrojne na Zachodzie"
+  },
+  {
+    "name":"WiN"
+  },
+  {
+    "name":"Wybory"
+  },
+  {
+    "name":"Zabawy dziecięce"
+  },
+  {
+    "name":"Zabory"
+  },
+  {
+    "name":"Zbrodnie ukraińskie"
+  },
+  {
+    "name":"Ziemiaństwo"
+  },
+  {
+    "name":"Ziemie Zachodnie"
+  },
+  {
+    "name":"Zwierzęta domowe"
+  },
+  {
+    "name":"Żydzi"
+  }]

@@ -1,0 +1,176 @@
+<div class="elasticsearch-front-cnt" ng-init="initData()">
+    <div class="container-fluid ahm-container">
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <div class="padding-right-in">
+                    <h2 class="head-search">
+                        <a href="#/t/">
+                            WYSZUKAJ PRZEZ FRAZĘ
+                        </a>
+                    </h2>
+                    <div class="col-search-inside" id="/t/" ng-class="(viewtype_hide!='index_search')?'over-hidden':''">
+                        <div class="over-col-search" ng-if="viewtype_hide!='index_search'"></div>
+                        <form
+                                class="form-inline form-search-inline"
+                                ng-submit="onSubmitFulltext()"
+                        >
+                            <div class="form-group group-search">
+
+                                <div class="input-group rel-input-group">
+                                    <label for="ahmsearch" class="abs-label">Wpisz frazę do wyszukiwania</label>
+                                    <input
+                                            type="text"
+                                            class="form-control"
+                                            id="ahmsearch"
+                                            placeholder="Wpisz frazę do wyszukiwania"
+                                            ng-model="data.phrase"
+                                    >
+
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-search"><span style="color: transparent">szukaj</span></button>
+
+                        </form>
+                        <div class="select-type">
+                            <a href="#/t/" ng-click="$event.preventDefault();changeTextSearchType('t',type_checkbox_text)" class="btn-point-search" ng-class="type_checkbox_text">
+                                <span class="circle"></span> wyszukaj w transkrypcjach
+                            </a>
+                            <a href="#/img/" ng-click="$event.preventDefault();changeTextSearchType('i',type_checkbox_images)" class="btn-point-search" ng-class="type_checkbox_images">
+                                <span class="circle"></span> wyszukaj w zbiorze zdjęć
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <div class="padding-left-in">
+                    <h2 class="head-search">
+                        <a href="#/i/">
+                            WYSZUKAJ PRZEZ INDEKS <span class="lower-title">(tylko w transkrypcjach)</span>
+                        </a>
+                    </h2>
+                    <div class="col-search-inside" id="/i/" ng-class="(viewtype_hide!='phrase_search')?'over-hidden':''">
+                        <div class="over-col-search" ng-if="viewtype_hide!='phrase_search'"></div>
+                        <index-form-show></index-form-show>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid ahm-container" ng-if="search_type='ti'">
+    <div class="search-result">
+        <div class="over-loading-search" ng-if="search_process_svg">
+            <img src="/images/loading.svg" class="img-responsive">
+        </div>
+        <div class="result-element" ng-repeat="el in data.result">
+            <div class="result-record-title">
+                <div class="icon">
+                    <img src="/images/[[ el.type ]]-icon.svg" class="img-responsive" alt="ikona oznaczenia typu nagrania - typ: [[ el.type ]]">
+                </div>
+                <div class="title-and-dur">
+                    <h3>
+                        <a ng-if="auth" href="/[[ el.type ]]/[[ el.record_id ]]-[[ el.record_alias ]]/0?frase=[[ data.phrase ]]">
+                            [[ el.name ]]
+                        </a>
+                        <a ng-if="!auth" href="/demo/[[ el.type ]]/[[ el.record_id ]]-[[ el.record_alias ]]/0?frase=[[ data.phrase ]]">
+                            [[ el.name ]]
+                        </a>
+                    </h3>
+                    <h4>[[ el.duration | timeToMinute]]</h4>
+                </div>
+            </div>
+
+
+            <div class="fragments">
+                <div class="row-element-search" ng-repeat="f in el.fragments">
+
+                    <div class="col-link-fragment">
+
+                        <div class="arrow-link">
+                            <!--<div class="arrow-left">-->
+                            <!--<a ng-if="auth" href="/[[ el.type ]]/[[ el.record_id ]]-[[ el.record_alias ]]/[[ f.start ]]?frase=[[ data.phrase ]]">-->
+                            <!--<img src="/images/fragment_arrow.jpg" class="img-responsive">-->
+                            <!--</a>-->
+                            <!--<a ng-if="!auth" href="/demo/[[ el.type ]]/[[ el.record_id ]]-[[ el.record_alias ]]/[[ f.start ]]?frase=[[ data.phrase ]]">-->
+                            <!--<img src="/images/fragment_arrow.jpg" class="img-responsive">-->
+                            <!--</a>-->
+
+                            <!--</div>-->
+                            <!--<div class="start-right">-->
+                            <!--<a ng-if="auth" href="/[[ el.type ]]/[[ el.record_id ]]-[[ el.record_alias ]]/[[ f.start ]]?frase=[[ data.phrase ]]">-->
+                            <!--[[ f.start | timeToMinute ]]-->
+                            <!--</a>-->
+                            <!--<a ng-if="!auth" href="/demo/[[ el.type ]]/[[ el.record_id ]]-[[ el.record_alias ]]/[[ f.start ]]?frase=[[ data.phrase ]]">-->
+                            <!--[[ f.start | timeToMinute ]]-->
+                            <!--</a>-->
+                            <!--</div>-->
+
+                            <a ng-if="auth" href="/[[ el.type ]]/[[ el.record_id ]]-[[ el.record_alias ]]/[[ f.start ]]?frase=[[ data.phrase ]]" title="link do miejca w transkrypcji">
+
+                                <span class="arrow-left">
+                                    <img src="/images/fragment_arrow.jpg" class="img-responsive" alt="strzałka w linku prowadzącym do nagrania">
+                                </span>
+
+                                <span class="start-right">
+                                    [[ f.start | timeToMinute ]]
+                                </span>
+
+                            </a>
+
+
+                            <a ng-if="!auth" href="/demo/[[ el.type ]]/[[ el.record_id ]]-[[ el.record_alias ]]/[[ f.start ]]?frase=[[ data.phrase ]]" title="link do miejca w transkrypcji">
+
+                                <span class="arrow-left">
+                                    <img src="/images/fragment_arrow.jpg" class="img-responsive" alt="strzałka w linku prowadzącym do nagrania">
+                                </span>
+
+                                <span class="start-right">
+                                    [[ f.start | timeToMinute ]]
+                                </span>
+
+                            </a>
+
+                        </div>
+
+
+                    </div>
+                    <div class="col-highlight">
+                        <div class="fragments-show-highlight">
+                            <div ng-repeat="hf in f.highlight.content track by $index">
+                                ...<span ng-bind-html="hf"></span>...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="slide-record-gallery-search">
+
+                <div id="photoswipe" photo-swipe images="el.images" figure-class="">
+                </div>
+
+            </div>
+
+            <div photo-slider></div>
+
+
+        </div>
+    </div>
+
+    <div class="more-section">
+        <a href="#" ng-if="show_next_button" class="button-more-search" ng-click="nextPag();$event.preventDefault()">
+            pokaż więcej
+        </a>
+    </div>
+
+    <h3 class="result-none" ng-if="search_start">
+        Brak wyników spełniających kryteria wyszukiwania
+    </h3>
+
+</div>
+

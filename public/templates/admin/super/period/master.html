@@ -1,0 +1,37 @@
+<div class="row" ng-init="initData()">
+    <div class="col-xs-12 col-sm-12 col-md-3">
+        <div show-search-criteria></div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-9">
+        <div
+                class="row"
+                ng-repeat="el in elements"
+        >
+
+            <div class="col-xs-12 col-sm-12 col-md-4" ng-init="basename[$index]=el.name">
+                <a
+                        href="#"
+                        editable-text="el.name"
+                        onbeforesave="checkPeriod($data,$index)"
+                        onaftersave="changePeriod($data,el.id)"
+                        e-label="">
+                    <h4>[[ el.name || 'empty' ]]</h4>
+                </a>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-8">
+                <a
+                        href="#/edit/links/[[ el.id ]]"
+                        class="btn btn-info"
+                >
+                    Powiązania z nagraniami
+                </a>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<div show-pagination></div>
+

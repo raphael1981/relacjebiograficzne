@@ -1,0 +1,155 @@
+{
+  "mappings": {
+    "fragmenty":{
+      "properties": {
+        "fid":{
+          "type":"integer"
+        },
+        "record_id":{
+          "type": "integer"
+        },
+        "record_title":{
+          "type": "text"
+        },
+        "last_name":{
+          "type":"text",
+          "analyzer":"simple",
+          "fielddata": true
+        },
+        "last_name_transform":{
+          "type":"text",
+          "fielddata": true
+        },
+        "record_alias":{
+          "type": "text"
+        },
+        "content":{
+          "type": "text",
+          "analyzer": "morfologik"
+        },
+        "except_content":{
+          "type": "text",
+          "analyzer": "my_custom_analyzer"
+        },
+        "start":{
+          "type": "integer"
+        },
+        "type":{
+          "type":"text"
+        },
+        "duration":{
+          "type":"integer"
+        },
+        "images":{
+          "properties":{
+            "image_name":{
+              "type":"text"
+            },
+            "image_link":{
+              "type":"text"
+            },
+            "image_size":{
+              "type":"text"
+            },
+            "tags":{
+              "type": "text",
+              "analyzer": "morfologik"
+            },
+            "description":{
+              "type": "text",
+              "analyzer": "morfologik"
+            },
+            "all":{
+              "type":"text",
+              "analyzer": "morfologik"
+            }
+          }
+        },
+        "intervals":{
+          "properties": {
+            "id":{
+              "type":"integer"
+            },
+            "begin":{
+              "type":"date",
+              "format": "yyyy-MM-dd"
+            },
+            "end":{
+              "type":"date",
+              "format": "yyyy-MM-dd"
+            }
+          }
+        },
+        "tags":{
+          "properties": {
+            "id":{
+              "type":"integer"
+            },
+            "name":{
+              "type":"text"
+            }
+          }
+        },
+        "places":{
+          "properties": {
+            "id":{
+              "type":"integer"
+            },
+            "name":{
+              "type":"text"
+            }
+          }
+        }
+      }
+    }
+  },
+  "settings": {
+    "analysis": {
+      "filter": {
+        "polish_folding": {
+          "type": "icu_folding"
+        },
+        "stop_ojciec":{
+          "type": "stop",
+          "stopwords": ["o","O","o!","O!"]
+        },
+        "synonym" : {
+          "type" : "synonym",
+          "synonyms" : [
+            "ojciec, ojcu, ojca, Ojca, Ojciec"
+          ]
+        }
+      },
+      "analyzer": {
+        "my_custom_analyzer": {
+          "type":      "custom",
+          "tokenizer": "standard",
+          "char_filter": [
+
+          ],
+          "filter": [
+            "stop_ojciec",
+            "synonym"
+          ]
+        },
+        "polish_analyzer": {
+          "tokenizer": "icu_tokenizer",
+          "filter": [
+            "polish_folding",
+            "lowercase"
+          ]
+        },
+        "icu_standard": {
+          "tokenizer": "icu_tokenizer",
+          "filter": [
+            "icu_folding"
+          ]
+        },
+        "ducet_sort": {
+          "tokenizer": "keyword",
+          "filter": [ "icu_collation" ]
+        }
+      }
+    }
+  }
+}

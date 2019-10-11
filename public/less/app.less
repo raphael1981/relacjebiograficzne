@@ -1,0 +1,602 @@
+@import "elements.less";
+
+@import "responsive.less";
+
+@import "fonts.less";
+
+
+nav{
+  min-height: 70px;
+}
+
+.loading{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 2;
+  text-align: center;
+  img{
+    position: fixed;
+    top:20vh;
+    left: 45vw;
+  }
+}
+
+
+.label-gray{
+  background: #969696;
+  letter-spacing: 1px;
+  font-size: 12px;
+}
+
+.btn-full-length{
+  width: 100%;
+}
+
+
+.alphaHide{
+  opacity: 0;
+}
+
+.alphaShow{
+  opacity: 1;
+  transition: 700ms opacity;
+  -webkit-transition: 700ms opacity;
+  -moz-transition: 700ms opacity;
+  -ms-transition: 700ms opacity;
+  -o-transition: 700ms opacity;
+}
+
+
+//Login Form
+
+
+
+
+
+//Login Form
+
+
+.nav.menu.section-admin-menu{
+  li{
+    display: inline-block;
+    font-size: 2rem;
+  }
+}
+
+//Editor
+.ta-editor {
+  min-height: 300px;
+  height: auto;
+  overflow: auto;
+  font-family: inherit;
+  font-size: 100%;
+  box-shdaow : none!important;
+}
+
+.ta-toolbar .btn {
+  border-radius : 0;
+  padding : 5px;
+  min-width : 30px;
+  background-color : #fff;
+  color : #333;
+}
+[text-angular] {
+  position : relative;
+}
+.ta-toolbar {
+  position : absolute ;
+  top : -30px;
+  right : 0;
+}
+@media all and (max-width: 699px) {
+  .ta-toolbar { position : absolute; }
+  .ta-editor { padding-top : 30px; }
+}
+
+@media all and (max-width: 250px) {
+  .ta-toolbar { display : none; }
+}
+.ta-toolbar .btn-group {
+  margin : 0!important;
+  //box-shadow : 0 1px 3px rgba(0,0,0,0.2);
+}
+.ta-editor {
+  border :1px solid #EEE;
+  border-raidus : 3px!important;
+}
+
+
+////////////////////////////////////////////
+
+.drop-box{
+  width: 100%;
+  height: 400px;
+  background: url("../images/upload-cloud.jpg") center center;
+  background-size: cover;
+}
+
+.col-form-new-interviewee{
+
+  .drop-box{
+    width: 100%;
+    height: 400px;
+    background: url("../images/upload-cloud.jpg") center center no-repeat;
+    background-size: contain;
+  }
+
+}
+
+
+.btn-group-sm>.btn.btn-add-image{
+  font-size: 2rem;
+}
+
+.img-over-div{
+  min-height: 570px;
+  .overphoto-click-cont{
+    position: relative;
+    a.overphoto-click{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+
+      &:hover{
+        background: url("../images/add-image-word.png") no-repeat center 10% rgba(0,0,0,0.6);
+      }
+    }
+  }
+}
+
+
+.btn-save-new-file{
+  position: fixed;
+  right: 0;
+  width: 100%;
+  bottom:0vh;
+  font-size: 3rem;
+  z-index: 22;
+  box-shadow: 0 0 20px #FFF;
+}
+
+
+
+////////////////////Modal Media/////////////////////
+
+
+.modal-media{
+
+  position: fixed;
+  z-index: 12;
+  top:7vh;
+  left:5%;
+  width: 90%;
+  height: 70vh;
+  padding: 3%;
+  border: 1px solid #000;
+  background: #FFF;
+
+  .scroll-media-view{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100%;
+  }
+
+}
+
+.overflow-shadow-media{
+  position: fixed;
+  z-index: 11;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top:0;
+  background: rgba(0,0,0,0.7);
+}
+
+
+
+
+///////////////////////Footer////////////////////////////////
+
+
+footer{
+  min-height: 100px;
+}
+
+///////////////////////Footer////////////////////////////////
+
+///////////////////////Editor//////////////////////////////
+
+
+.image-left{
+  float: left;
+  margin: 0 15px 15px 0;
+}
+
+
+.image-right{
+  float: right;
+  margin: 0 0 15px 15px;
+}
+
+///////////////////////Editor//////////////////////////////
+
+
+.container-fluid.loading-area{
+  position: relative;
+}
+
+
+/////////////////////////Record Fragments/////////////////////
+
+
+.fragments-list-frame{
+  height: 700px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  .row-fragment{
+    margin-bottom:20px;
+
+
+    .col-div-neutral{
+      background: #FFF;
+      overflow: hidden;
+      padding-top:20px;
+      padding-bottom: 20px;
+      border: 1px solid silver;
+      background: #DBDBDB;
+    }
+
+  }
+
+  .fragment-content-look{
+    height:200px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border:1px solid #a5a5a5;
+    padding:10px;
+    background: #FFF;
+  }
+
+}
+
+.tag-label{
+  display:inline-block;
+  margin:5px;
+}
+
+
+tags-input .tags .tag-item {
+  background: #5bc0de;
+  border:none;
+}
+
+h4.select-suggest-h4{
+  padding-left: 2%;
+  padding-right: 2%;
+  &:hover{
+    color:#000;
+  }
+}
+
+span.big-label{
+  font-size: 1.4rem;
+}
+
+#appendSource{
+  audio{
+    margin-top: 30px;
+  }
+}
+
+
+
+.col-form-new-record{
+
+  .raport{
+    position: absolute;
+    left:0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.6);
+    z-index: 11;
+
+    img{
+      position: absolute;
+      width: 90px;
+      left: 45%;
+      top:40%;
+    }
+
+    h2{
+      text-align: center;
+      margin-top: 20%;
+    }
+
+  }
+
+  .btn-save-record{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 12;
+  }
+
+}
+
+
+.col-form-new-interviewee{
+
+  .raport{
+    position: absolute;
+    left:0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.6);
+    z-index: 11;
+
+    img{
+      position: absolute;
+      width: 90px;
+      left: 45%;
+      top:40%;
+    }
+
+    h2{
+      text-align: center;
+      margin-top: 20%;
+    }
+
+  }
+
+  .btn-save-interviewee{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 12;
+  }
+
+}
+
+.crop-view{
+  background:#C0C0C0;
+}
+
+.upload-screen.added-image{
+
+  position: relative;
+  .btn-remove-upload-file{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+  }
+
+}
+
+///////////delete///////////////////
+
+.shadow-delete{
+  display: none;
+}
+
+.shadow-delete.show{
+  display: block;
+  position: fixed;
+  width: 100%;
+  height:100%;
+  top:0;
+  left:0;
+  background: rgba(0,0,0,0.6);
+  z-index: 99;
+
+
+  .raport-before-delete{
+    position: absolute;
+    width: 70%;
+    left: 15%;
+    top:10vh;
+    z-index: 100;
+
+    background: #f2f2f2;
+    padding: 3%;
+
+    .relations-view{
+      min-height: 40vh;
+      max-height: 40vh;
+      overflow-y:scroll;
+      overflow-x:hidden;
+
+    }
+
+    .delete-btns-beam{
+      text-align: right;
+    }
+
+  }
+
+}
+
+
+.view-periods{
+  overflow-x: hidden;
+  overflow-y: scroll;
+  max-height: 700px;
+}
+
+.hide-fragment-link{
+  position: fixed;
+  right: 20px;
+  top:54px;
+  z-index: 999;
+
+}
+
+
+.overshadow-time{
+
+  position: fixed;
+  left: 0;
+  top:0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  z-index: 88;
+
+  .link-time-content{
+    position: absolute;
+    z-index: 11;
+    top:10vh;
+    left: 5vw;
+    width: 89vw;
+    background: #FFF;
+
+
+    .fragment-content-edit{
+      min-height: 85vh;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      padding: 2%;
+
+      .f-text-content{
+        height: 20vh;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        font-style: italic;
+        padding: 1%;
+        border: 1px solid #EEE;
+      }
+
+    }
+
+  }
+
+  .col-suggest-intervals{
+    overflow-y: scroll;
+    height: 25vh;
+  }
+
+}
+
+.label.label-break{
+  white-space: normal;
+}
+
+.intervals-added-show{
+  overflow-x: hidden;
+  overflow-y: scroll;
+  max-height: 220px;
+  .inside-padding{
+    padding: 2%;
+  }
+}
+
+.h3-time-tags{
+  width: 46%;
+  margin: 1%;
+  background-color: #337ab7;
+  display: inline-block;
+  padding: 1%;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 1.6rem;
+  text-align: center;
+  a {
+    color: #FFF;
+    font-size: 1.8rem;
+    .fa {
+
+    }
+  }
+}
+
+.interval-list-element{
+  a{
+    color: #FFF;
+  }
+}
+
+
+.overload-fragments{
+  position: fixed;
+  left: 0;
+  top:0;
+  width: 100vw;
+  height: 5vh;
+  padding-top: 50vh;
+  background: rgba(255,255,255,0.6);
+  h2{
+    text-align: center;
+  }
+
+  img{
+    width: 80px;
+  }
+
+}
+
+
+.dialog-window{
+  position: fixed;
+  top:30vh;
+  left: 38%;
+  width: 24%;
+  background: #FFF;
+  box-shadow: 0 0 20px #000;
+  padding: 2%;
+  border-radius: 7px;
+}
+
+.edit-fragment{
+  position: fixed;
+  top:30vh;
+  left: 30%;
+  width: 40%;
+  background: #FFF;
+  box-shadow: 0 0 20px #000;
+  padding: 1%;
+  border-radius: 7px;
+}
+
+.cloud-add-new-interval{
+  display: none;
+}
+
+.cloud-interval-content{
+  display: none;
+}
+
+.cloud-add-new-interval.active-add{
+  display: block;
+  position: fixed;
+  z-index: 80;
+  left: 0;
+  top: 0;
+  background: rgba(0,0,0,0.6);
+  width: 100%;
+  height: 100%;
+}
+
+.cloud-interval-content.active-add{
+  display: block;
+  position: absolute;
+  z-index: 90;
+  width: 80vw;
+  min-height: 400px;
+  top: 10vh;
+  left: 10vw;
+  background: #FFF;
+  padding: 20px;
+}
+
+

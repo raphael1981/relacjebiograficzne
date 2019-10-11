@@ -1,0 +1,82 @@
+<div class="row" ng-init="initData()">
+
+    <div class="col-xs-12 col-sm-12 col-form-new-interviewee">
+
+        <div class="raport loading-saving" ng-class="placesaving" ng-init="placesaving='hidden'">
+            <img src="/images/loading.svg" class="img-responsive">
+        </div>
+
+        <div class="raport loading-saved" ng-class="placesaved" ng-init="placesaved='hidden'" ng-click="placesaved='hidden'">
+            <h2 ng-click="placesaved='hidden'">Miejsce zostało dodane</h2>
+        </div>
+
+
+
+        <form class="form-horizontal" ng-submit="createNewPlace()">
+            <fieldset>
+
+
+                <legend>Nowe miejsce</legend>
+
+
+
+                <div class="form-group" ng-class="classes.name">
+                    <label class="col-md-2 control-label" for="name">Nazwa miejsca</label>
+                    <div class="col-md-10">
+                        <input
+                                id="name"
+                                name="name"
+                                type="text"
+                                placeholder="Nazwa miejsca"
+                                class="form-control input-md"
+                                ng-model="place.name"
+                                ng-change="checkName()"
+                        >
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="latid">Szerokość geograficzna</label>
+                    <div class="col-md-10">
+                        <input
+                                id="latid"
+                                name="lat"
+                                type="text"
+                                placeholder="Szerokość geograficzna"
+                                class="form-control input-md"
+                                ng-model="place.lat"
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="lngid">Długość geograficzna</label>
+                    <div class="col-md-10">
+                        <input
+                                id="lngid"
+                                name="lng"
+                                type="text"
+                                placeholder="Długość geograficzna"
+                                class="form-control input-md"
+                                ng-model="place.lng"
+                        >
+                    </div>
+                </div>
+
+
+                <!-- Button -->
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <button name="singlebutton" class="btn btn-primary btn-full-length btn-lg btn-save-interviewee">Dodaj Miejsce</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+
+
+    </div>
+
+</div>

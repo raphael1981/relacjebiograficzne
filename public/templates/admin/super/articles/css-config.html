@@ -1,0 +1,17 @@
+<h4>Konfigurator</h4>
+<form name="cssconfig">
+    <label>
+        Maxymalna szerokość (px)
+    </label>
+    <div class="alert alert-danger" ng-if="!cssconfig.mwidth.$valid">
+        Wpisz liczbę całkowitą
+    </div>
+    <input type="text" name="mwidth" placeholder="Maxymalna szerokość" class="form-control" ng-model="imagetoadd.maxwidth" ng-pattern="/^[0-9]+$/">
+    <label>
+        <select class="form-control" ng-model="imagetoadd.float">
+            <option value="none">none</option>
+            <option value="image-left">Wyrównaj do lewej</option>
+            <option value="image-right">Wyrównaj do prawej</option>
+        </select>
+    </label>
+</form>

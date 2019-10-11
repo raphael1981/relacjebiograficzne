@@ -1,0 +1,8 @@
+{
+  "script": {
+    "source":"ctx._source.fragments.add(params.fragment)",
+    "params":{
+      "fragment":<array>
+    }
+  }
+}

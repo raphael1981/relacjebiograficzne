@@ -1,0 +1,108 @@
+<div class="cloud-add-new-interval" ng-class="intervaladd" ng-init="intervaladd=''" ng-click="intervaladd='';clearIntervalFields()">
+
+</div>
+
+<div class="cloud-interval-content" ng-class="intervaladd" ng-init="intervaladd=''">
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <form class="form-horizontal">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">opcjonalne</span>
+                    <input type="text" class="form-control" placeholder="Nazwa" ng-model="data.name" aria-describedby="basic-addon1">
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6">
+            <label>Od:</label>
+            <hr>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                    <label>Dzień</label>
+                    <select name="repeatSelect" ng-model="data.begin.day" ng-disabled="!is_month_exist_begin" class="form-control">
+                        <option ng-repeat="option in begin_vars.days" value="[[ option ]]">[[ option ]] </option>
+                    </select>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                    <label>Miesiąc</label>
+                    <select name="repeatSelect" ng-model="data.begin.month" ng-disabled="!is_year_exist_begin" class="form-control" ng-change="changeDaysListBegin(data.begin.year)">
+                        <option ng-repeat="option in begin_vars.months" value="[[ option.value ]]">[[ option.name ]] </option>
+                    </select>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                    <label>Rok</label>
+                    <select name="repeatSelect" ng-model="data.begin.year" class="form-control" ng-change="changeDaysListBegin(data.begin.year)">
+                        <option ng-repeat="option in begin_vars.years" value="[[ option ]]">[[option]]</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6">
+            <label>Do:</label>
+            <hr>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                    <label>Dzień</label>
+                    <select name="repeatSelect" ng-model="data.end.day" ng-disabled="!is_month_exist_end" class="form-control">
+                        <option ng-repeat="option in end_vars.days" value="[[ option ]]">[[ option ]] </option>
+                    </select>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                    <label>Miesiąc</label>
+                    <select name="repeatSelect" ng-model="data.end.month"  ng-disabled="!is_year_exist_end" class="form-control" ng-change="changeDaysListEnd(data.begin.year)">
+                        <option ng-repeat="option in end_vars.months" value="[[ option.value ]]">[[ option.name ]] </option>
+                    </select>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                    <label>Rok</label>
+                    <select name="repeatSelect" ng-model="data.end.year" class="form-control" ng-change="changeDaysListEnd(data.begin.year)">
+                        <option ng-repeat="option in end_vars.years" value="[[ option ]]">[[option]]</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <hr>
+
+    <div ng-if="is_some_error_add">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+
+                <div ng-if="is_data_not_much">
+                    <p class="text-danger">
+                        Musisz wybrać przynajmniej rok rozpoczęcia
+                    </p>
+                </div>
+
+                <div ng-if="is_intervals_exits">
+                    <div>
+                        <p class="text-warning">Istnieją już interwały o podobnych kryteriach. Czy mimi to chcesz dodać nowy?</p>
+                        <button type="button"  class="btn btn-default" ng-click="clearIntervalFields()">Anuluj</button>
+                        <button type="button" class="btn btn-primary" ng-click="addIntervalToBase()">Dodaj</button>
+                        <hr>
+                    </div>
+
+                    <span style="font-size: 15px;display: inline-block; margin:3px;" class="label label-primary" ng-repeat="intv in $parent.intervals">
+                        [[ intv.name ]] [[ intv.begin ]] [[ intv.end ]]
+                    </span>
+                </div>
+
+            </div>
+        </div>
+        <hr>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <button type="button" class="btn btn-primary btn-full-length" ng-click="startAddInterval()">
+                Dodaj
+            </button>
+        </div>
+    </div>
+
+</div>

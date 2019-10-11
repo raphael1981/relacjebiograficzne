@@ -1,0 +1,28 @@
+<div class="media-show jumbotron">
+
+    <div class="row">
+        <div
+                ng-repeat="img in media"
+                class="col-xs-12 col-sm-6 col-md-2"
+                ng-init="mediaconfig[$index]={
+                            maxWidth:img.rootsize[0],
+                            float:'none',
+                            hideform:true
+                            }">
+
+            <div class="img-over-div">
+
+                <div class="overphoto-click-cont">
+                    <img src="[[ img.image ]]" class="img-responsive thumbnail">
+                    <a href="#" class="overphoto-click" ng-click="clickImageInLibraryIntroArticle($index,img);$event.preventDefault()"></a>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>

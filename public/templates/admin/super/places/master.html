@@ -1,0 +1,49 @@
+<div class="row" ng-init="initData()">
+    <div class="col-xs-12 col-sm-12 col-md-3">
+        <div show-search-criteria></div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-9">
+
+        <div
+                class="row"
+                ng-repeat="el in elements"
+        >
+
+            <div class="col-xs-12 col-sm-12 col-md-6" ng-init="basename[$index]=el.name">
+                <a
+                        href="#"
+                        editable-text="el.name"
+                        onbeforesave="checkPlace($data,$index)"
+                        onaftersave="changePlace($data,el.id)"
+                        e-label="">
+                    <h4>[[ el.name || 'empty' ]]</h4>
+                </a>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-3">
+                <!--<i>szerokość:</i> <label class="label label-primary">[[ el.lat ]]</label>-->
+                <!--<br>-->
+                <!--<i>długość:</i> <label class="label label-primary">[[ el.lng ]]</label>-->
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-1">
+                <!--<a href="#/edit/[[ el.id ]]" class="btn btn-warning">-->
+                    <!--<i class="fa fa-pencil" aria-hidden="true"></i>-->
+                <!--</a>-->
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-2">
+                <div delete-element id="[[ el.id ]]"></div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12">
+                <hr>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<div show-pagination-route></div>
+

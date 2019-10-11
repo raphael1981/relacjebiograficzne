@@ -1,0 +1,148 @@
+<div class="row" ng-init="initData()">
+
+    <div class="col-xs-12 col-sm-12 col-form-new-interviewee">
+
+        <div class="raport loading-saving" ng-class="emplsaving" ng-init="emplsaving='hidden'">
+            <img src="/images/loading.svg" class="img-responsive">
+        </div>
+
+        <div class="raport loading-saved" ng-class="emplsaved" ng-init="emplsaved='hidden'" ng-click="emplsaved='hidden'">
+            <h2 ng-click="emplsaved='hidden'">Współtwórca został zaktualizowany</h2>
+        </div>
+
+
+
+        <div class="form-horizontal">
+            <fieldset>
+
+
+                <legend>Współtwórca</legend>
+
+
+
+                <div class="form-group" ng-class="classes.name">
+                    <label class="col-md-2 control-label" for="name">Imię</label>
+                    <div class="col-md-10">
+                        <input
+                                id="name"
+                                name="name"
+                                type="text"
+                                placeholder="Imię"
+                                class="form-control input-md"
+                                ng-model="employee.name"
+                                ng-change="checkName()"
+                        >
+                    </div>
+                </div>
+
+
+                <div class="form-group" ng-class="classes.surname">
+                    <label class="col-md-2 control-label" for="surname">Nazwisko</label>
+                    <div class="col-md-10">
+                        <input
+                                id="surname"
+                                name="surname"
+                                type="text"
+                                placeholder="Nazwisko"
+                                class="form-control input-md"
+                                ng-model="employee.surname"
+                                ng-change="checkSurname()"
+                        >
+                    </div>
+                </div>
+
+
+                <div class="form-group" ng-class="classes.email">
+                    <label class="col-md-2 control-label" for="surname">Email</label>
+                    <div class="col-md-10">
+                        <input
+                                id="email"
+                                name="email"
+                                type="text"
+                                placeholder="email"
+                                class="form-control input-md"
+                                ng-model="employee.email"
+                                ng-change="checkEmail()"
+                        >
+                        <span class="help-block">
+                            [[ raportemail ]]
+                        </span>
+                    </div>
+                </div>
+
+
+                <div class="form-group" ng-class="classes.password">
+                    <label class="col-md-2 control-label" for="surname">Hasło</label>
+                    <div class="col-md-10">
+                        <a
+                                href="#"
+                                editable-password="employee.password"
+                                onbeforesave="checkPassword($data)"
+                                onaftersave="changePassword($data)"
+                                e-label="">
+                            [[ '****' || 'empty' ]]
+                        </a>
+                        <span class="help-block">
+                            [[ raportpassword ]]
+                        </span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="surname">Uprawnienia</label>
+                    <div class="col-md-10">
+                        <select name="mySelect" id="mySelect" class="form-control"
+                                ng-options="option.name for option in permissions track by option.type"
+                                ng-model="employee.permission"></select>
+                    </div>
+                </div>
+
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Nagrania dp przygotowywania przez współtwórcę</label>
+                    <div class="col-md-10">
+
+                        <ui-select
+                                multiple
+                                ng-model="employee.records"
+                                theme="bootstrap"
+                                ng-disabled="false"
+                                sortable="true"
+                                close-on-select="true"
+                                style="width: 100%;"
+                                title="Single property binding with async data"
+                        >
+                            <ui-select-match
+                                    placeholder="">
+                                <span class="big-label">[[$item.title ]] / [[$item.source]] / [[$item.signature]]</span>
+                            </ui-select-match>
+
+                            <ui-select-choices
+                                    repeat="record.id as record in records | propsFilter: {title: $select.search, source: $select.search, signature: $select.search}"
+                            >
+
+                                <h4 class="select-suggest-h4">[[record.title]] / [[record.source]] / [[record.signature]]</h4>
+
+                            </ui-select-choices>
+                        </ui-select>
+
+                    </div>
+                </div>
+
+
+                <!-- Button -->
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <button name="singlebutton" class="btn btn-primary btn-full-length btn-lg btn-save-interviewee" ng-click="updateEmployee()">Aktualizuj Współtwórcę</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </div>
+
+
+    </div>
+
+</div>

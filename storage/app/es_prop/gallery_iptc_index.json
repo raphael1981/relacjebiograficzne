@@ -1,0 +1,47 @@
+{
+  "mappings": {
+    "gallery":{
+      "properties": {
+        "id":{
+          "type": "integer"
+        },
+        "name":{
+          "type": "text"
+        },
+        "images":{
+          "properties": {
+            "img": {
+              "type":"text"
+            },
+            "img_link":{
+              "type":"text"
+            },
+            "img_link_generate":{
+              "type":"text"
+            },
+            "desc": {
+              "type": "text",
+              "analyzer": "morfologik"
+            },
+            "size":{
+              "type": "text"
+            },
+            "orientation":{
+              "type":"text"
+            },
+
+            "record_id":{
+              "type":"integer",
+              "null_value": "NULL"
+            },
+
+            "record_status":{
+              "type":"integer",
+              "null_value": "NULL"
+            }
+          }
+        }
+      }
+    }
+  }
+}

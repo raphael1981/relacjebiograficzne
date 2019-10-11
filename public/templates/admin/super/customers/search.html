@@ -1,0 +1,61 @@
+<form ng-submit="searchSubmit()">
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </span>
+        <input
+                type="text"
+                class="form-control"
+                placeholder="Wpisz frazę"
+                aria-describedby="basic-addon1"
+                ng-model="frase"
+        >
+    </div>
+    <div class="checkbox">
+        <label class="col-xs-12 col-sm-12 col-md-6">
+            <input type="checkbox" ng-model="searchcolumns.email"> email
+        </label>
+    </div>
+    <div class="clearfix"></div>
+    <hr>
+    <!--<div class="form-group">-->
+        <!--<label for="regionID">Region</label>-->
+        <!--<select-->
+                <!--name="region"-->
+                <!--id="regionID"-->
+                <!--class="form-control"-->
+                <!--ng-options="option.name for option in regions track by option.id"-->
+                <!--ng-model="filter.region"-->
+        <!--&gt;-->
+
+        <!--</select>-->
+    <!--</div>-->
+    <!--<hr>-->
+    <!--<div class="form-group">-->
+        <!--<label for="ocupationID">Zawód</label>-->
+        <!--<select-->
+                <!--name="ocupation"-->
+                <!--id="ocupationID"-->
+                <!--class="form-control"-->
+                <!--ng-options="option for option in ocupations track by option"-->
+                <!--ng-model="filter.ocupation"-->
+        <!--&gt;-->
+
+        <!--</select>-->
+    <!--</div>-->
+    <!--<hr>-->
+    <div class="form-group">
+        <label for="statusID">Status</label>
+        <select
+                name="status"
+                id="statusID"
+                class="form-control"
+                ng-options="option.name for option in statuses track by option.name"
+                ng-model="filter.status"
+        >
+
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-full-length">Szukaj</button>
+</form>
